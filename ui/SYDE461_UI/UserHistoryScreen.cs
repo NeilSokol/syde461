@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace SYDE461_UI
 {
-    public partial class ShutdownScreen : Form
+    public partial class UserHistoryScreen : Form
     {
-        public ShutdownScreen()
+        public UserHistoryScreen()
         {
             InitializeComponent();
         }

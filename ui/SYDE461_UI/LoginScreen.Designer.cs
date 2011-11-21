@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApplication1
+﻿namespace SYDE461_UI
 {
     partial class LoginScreen
     {

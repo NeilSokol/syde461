@@ -1,6 +1,6 @@
 ﻿namespace SYDE461_UI
 {
-    partial class ExerciseScreen
+    partial class UserHistoryScreen
     {
         /// <summary>
         /// Required designer variable.

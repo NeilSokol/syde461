@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SYDE461_UI", "WindowsFormsApplication1\SYDE461_UI.csproj", "{F1216433-6B59-481A-8A9D-D806C99529E5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SYDE461_UI", "SYDE461_UI\SYDE461_UI.csproj", "{F1216433-6B59-481A-8A9D-D806C99529E5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

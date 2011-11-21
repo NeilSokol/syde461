@@ -12,3 +12,16 @@ C:\Documents and Settings\Joan\My Documents\Visual Studio 2010\Projects\SYDE461_
 C:\Documents and Settings\Joan\My Documents\Visual Studio 2010\Projects\SYDE461_UI\WindowsFormsApplication1\obj\x86\Debug\WindowsFormsApplication1.pdb
 C:\Documents and Settings\Joan\Syde461\syde461\ui\SYDE461_UI\obj\x86\Debug\WindowsFormsApplication1.exe
 C:\Documents and Settings\Joan\Syde461\syde461\ui\SYDE461_UI\obj\x86\Debug\WindowsFormsApplication1.pdb
+C:\Documents and Settings\Joan\Syde461\syde461\ui\SYDE461_UI\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Joan\Syde461\syde461\ui\SYDE461_UI\obj\x86\Debug\WindowsFormsApplication1.Properties.Resources.resources
+C:\Documents and Settings\Joan\Syde461\syde461\ui\SYDE461_UI\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Documents and Settings\Joan\Syde461\syde461\ui\SYDE461_UI\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Documents and Settings\Joan\Syde461\syde461\ui\SYDE461_UI\bin\Debug\WindowsFormsApplication1.exe
+C:\Documents and Settings\Joan\Syde461\syde461\ui\SYDE461_UI\bin\Debug\WindowsFormsApplication1.pdb
+C:\Documents and Settings\Joan\Syde461\syde461\ui\SYDE461_UI\obj\x86\Debug\UserControl1.baml
+C:\Documents and Settings\Joan\Syde461\syde461\ui\SYDE461_UI\obj\x86\Debug\UserControl1.g.cs
+C:\Documents and Settings\Joan\Syde461\syde461\ui\SYDE461_UI\obj\x86\Debug\WindowsFormsApplication1_MarkupCompile.cache
+C:\Documents and Settings\Joan\Syde461\syde461\ui\SYDE461_UI\obj\x86\Debug\WindowsFormsApplication1.g.resources
+C:\Documents and Settings\Joan\Syde461\syde461\ui\SYDE461_UI\obj\x86\Debug\SYDE461_UI.CreateNewUser.resources
+C:\Documents and Settings\Joan\Syde461\syde461\ui\SYDE461_UI\obj\x86\Debug\SYDE461_UI.LoginScreen.resources
+C:\Documents and Settings\Joan\Syde461\syde461\ui\SYDE461_UI\obj\x86\Debug\SYDE461_UI.WelcomeScreen.resources
