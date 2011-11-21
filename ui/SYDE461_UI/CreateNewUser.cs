@@ -25,10 +25,8 @@ namespace SYDE461_UI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            username = textBox1.Text;
-            password = textBox2.Text;
-
-            newUser.setUserInfo(username, password);
+            newUser.setUserInfo(textBox1.Text, textBox2.Text);
+            caller.fillUsernameAndPass(this, newUser);
             this.Close();
         }
 

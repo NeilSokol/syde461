@@ -14,6 +14,7 @@ namespace SYDE461_UI
         //create holders for user input
         String username = "";
         String password = "";
+        CreateNewUser NewUser;
 
         public LoginScreen()
         {
@@ -44,6 +45,7 @@ namespace SYDE461_UI
 
         private void button2_Click(object sender, EventArgs e)
         {
+
             CreateNewUser NewUser = new CreateNewUser(this);
             NewUser.ShowDialog();
             UserInfo newInfo = NewUser.getuserinput();
@@ -55,5 +57,14 @@ namespace SYDE461_UI
 
         }
 
+        public void fillUsernameAndPass(CreateNewUser newUser, UserInfo newInfo)
+        {
+            username = newInfo.getUsername();
+            password = newInfo.getPassword();
+            //NewUser.Close();
+
+            //UserControl1 NewUser2 = new UserControl1();
+
+        }
     }
 }

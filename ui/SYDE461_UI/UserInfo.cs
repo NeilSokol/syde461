@@ -24,9 +24,10 @@ namespace SYDE461_UI
 
         public UserInfo setUserInfo(String name, String pass)
         {
-            UserInfo newUserInfo = new UserInfo(name, pass);
+            this.username = name;
+            this.password = pass;
 
-            return newUserInfo;
+            return this;
         }
 
         public bool checkUserInfo(String name, String pass)
