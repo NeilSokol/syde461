@@ -50,6 +50,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExerciseStore.cs" />
+    <Compile Include="UserInfoStore.cs" />
     <Compile Include="ExerciseData.cs" />
     <Compile Include="UserHistoryData.cs" />
     <Compile Include="UserControl1.xaml.cs">
@@ -105,6 +107,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ExerciseScreen.resx">
       <DependentUpon>ExerciseScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginFail.resx">
+      <DependentUpon>LoginFail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginScreen.resx">
       <DependentUpon>LoginScreen.cs</DependentUpon>
