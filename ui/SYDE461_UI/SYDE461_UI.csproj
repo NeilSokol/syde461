@@ -50,6 +50,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExerciseData.cs" />
+    <Compile Include="UserHistoryData.cs" />
     <Compile Include="UserControl1.xaml.cs">
       <DependentUpon>UserControl1.xaml</DependentUpon>
     </Compile>
@@ -101,6 +103,9 @@
     <EmbeddedResource Include="CreateNewUser.resx">
       <DependentUpon>CreateNewUser.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ExerciseScreen.resx">
+      <DependentUpon>ExerciseScreen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginScreen.resx">
       <DependentUpon>LoginScreen.cs</DependentUpon>
     </EmbeddedResource>
@@ -113,6 +118,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ShutdownScreen.resx">
+      <DependentUpon>ShutdownScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserHistoryScreen.resx">
+      <DependentUpon>UserHistoryScreen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WelcomeScreen.resx">
       <DependentUpon>WelcomeScreen.cs</DependentUpon>
     </EmbeddedResource>

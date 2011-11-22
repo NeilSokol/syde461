@@ -9,11 +9,13 @@ using System.Windows.Forms;
 
 namespace SYDE461_UI
 {
+    // This class is for the UI component of displaying user activity
     public partial class UserHistoryScreen : Form
     {
         public UserHistoryScreen()
         {
             InitializeComponent();
         }
+
     }
 }

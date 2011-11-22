@@ -25,3 +25,6 @@ C:\Documents and Settings\Joan\Syde461\syde461\ui\SYDE461_UI\obj\x86\Debug\Windo
 C:\Documents and Settings\Joan\Syde461\syde461\ui\SYDE461_UI\obj\x86\Debug\SYDE461_UI.CreateNewUser.resources
 C:\Documents and Settings\Joan\Syde461\syde461\ui\SYDE461_UI\obj\x86\Debug\SYDE461_UI.LoginScreen.resources
 C:\Documents and Settings\Joan\Syde461\syde461\ui\SYDE461_UI\obj\x86\Debug\SYDE461_UI.WelcomeScreen.resources
+C:\Documents and Settings\Joan\Syde461\syde461\ui\SYDE461_UI\obj\x86\Debug\SYDE461_UI.ExerciseScreen.resources
+C:\Documents and Settings\Joan\Syde461\syde461\ui\SYDE461_UI\obj\x86\Debug\SYDE461_UI.ShutdownScreen.resources
+C:\Documents and Settings\Joan\Syde461\syde461\ui\SYDE461_UI\obj\x86\Debug\SYDE461_UI.UserHistoryScreen.resources

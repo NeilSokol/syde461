@@ -55,17 +55,14 @@
             // 
             // label1
             // 
-            string displayText = "Welcome " + user.getUsername() + "!";
-            
-
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(31, 29);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(52, 13);
+            // Visual Studio doesn't like this for some reason, 
+            // but it's declared in WelcomeScreen.cs
+            this.label1.Text = "Welcome " + username + "!";
+            this.label1.Size = new System.Drawing.Size(0, 13);
             this.label1.TabIndex = 2;
-            this.label1.Text = displayText;
-
-
             // 
             // WelcomeScreen
             // 
@@ -76,7 +73,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Name = "WelcomeScreen";
-            this.Text = "Form1";
+            this.Text = "Main Menu";
             this.ResumeLayout(false);
             this.PerformLayout();
 

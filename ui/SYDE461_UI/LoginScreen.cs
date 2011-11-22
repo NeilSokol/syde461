@@ -9,18 +9,25 @@ using System.Windows.Forms;
 
 namespace SYDE461_UI
 {
+    // This class is for display the login screen of the UI
     public partial class LoginScreen : Form
     {
         //create holders for user input
         String username = "";
         String password = "";
-        CreateNewUser NewUser;
 
+        // create a holder in case need to create a new user
+        // This seems really sloppy, so we'll probably change this
+        //CreateNewUser NewUser;
+
+        //Default constructor
         public LoginScreen()
         {
             InitializeComponent();
         }
 
+        //Button for creating a new user
+        //We should really rename these buttons into something more descriptive
         private void button1_Click(object sender, EventArgs e)
         {
 
@@ -34,15 +41,19 @@ namespace SYDE461_UI
             //If the user input matchs existing user information then open the user's welcomescreen and info
             if ((match == true))
             {
+                //Create and show a main menu screen for the specific user
                 WelcomeScreen MainMenu = new WelcomeScreen(loginInfo);
                 MainMenu.ShowDialog();
             }
             else
             {
+                // If the login fails show a screen that will inform the user
+                // Should provide useful information to user
                 LoginFail failed = new LoginFail();
             }
         }
 
+        //
         private void button2_Click(object sender, EventArgs e)
         {
 

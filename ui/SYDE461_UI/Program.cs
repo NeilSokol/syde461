@@ -5,6 +5,9 @@ using System.Windows.Forms;
 
 namespace SYDE461_UI
 {
+    // This is the main class for the UI
+    // This will have to be modified when we join up the Kinect
+    // component to the UI
     static class Program
     {
         /// <summary>

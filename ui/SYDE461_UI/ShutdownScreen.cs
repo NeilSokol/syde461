@@ -9,11 +9,14 @@ using System.Windows.Forms;
 
 namespace SYDE461_UI
 {
+    // This class is for initializing the shutdown of the application
+    //We might not need this class in the end
     public partial class ShutdownScreen : Form
     {
         public ShutdownScreen()
         {
             InitializeComponent();
         }
+
     }
 }
