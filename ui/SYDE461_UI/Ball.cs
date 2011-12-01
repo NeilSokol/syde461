@@ -21,26 +21,31 @@ namespace WindowsFormsApplication1
         public double width = 2;
         public double height = 2;
         public Ellipse theBall;
-        public double ballArea = 40;
+        public double ballArea = 200;
         private System.Drawing.Pen bluePen = new System.Drawing.Pen(System.Drawing.Color.Blue, 8);
+        public double redx = 1;
+        public double redy = 1;
+        public double yellowx = 1;
+        public double yellowy = 1;
+        public double fingerdistance = 1;
 
         public Ball(Bitmap background,double area)
         {
             scene = background;
             ballArea = area;
             //initialize ball as elipse with size scaled to scene resolution
-            ballsize = (int) Math.Min(scene.VerticalResolution, scene.HorizontalResolution);
-            posx = (int) (scene.HorizontalResolution / 2);
-            posy = (int) (scene.VerticalResolution / 2);
-
+            ballsize = (int) Math.Min(scene.Height, scene.Width);
+            posx = (int) (scene.Width / 4);
+            posy = (int) (scene.Height / 4);
             theBall = new Ellipse();
         }
 
 
         public void UpdateBall(int newheight)
         {
-            height = newheight;
-            width = (ballArea - (0.5 * height)) / Math.PI;
+            fingerdistance = Math.Sqrt(Math.Pow(Math.Abs(redx - yellowx), 2) + Math.Pow(Math.Abs(redy - yellowy), 2));
+            height = Math.Max((int)fingerdistance,1);
+            width = (ballArea / (Math.PI * (0.25 * height)));
             g = Graphics.FromImage(scene);
             g.Clear(System.Drawing.Color.Black);
             g.DrawEllipse(bluePen, posx, posy, (int)width, (int)height);

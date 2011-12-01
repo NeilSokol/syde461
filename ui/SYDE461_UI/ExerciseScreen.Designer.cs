@@ -32,13 +32,17 @@
             this.fingerDistanceValue = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.ballBox = new System.Windows.Forms.PictureBox();
+            this.glTest = new OpenTK.GLControl();
+            this.bgw = new System.ComponentModel.BackgroundWorker();
+            this.bgw_red = new System.ComponentModel.BackgroundWorker();
+            this.BallBoxLabel = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ballBox)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(37, 45);
+            this.pictureBox1.Location = new System.Drawing.Point(40, 41);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(357, 222);
             this.pictureBox1.TabIndex = 0;
@@ -63,17 +67,47 @@
             // 
             // ballBox
             // 
-            this.ballBox.Location = new System.Drawing.Point(436, 45);
+            this.ballBox.Location = new System.Drawing.Point(436, 41);
             this.ballBox.Name = "ballBox";
             this.ballBox.Size = new System.Drawing.Size(357, 222);
             this.ballBox.TabIndex = 6;
             this.ballBox.TabStop = false;
+            // 
+            // glTest
+            // 
+            this.glTest.BackColor = System.Drawing.Color.Black;
+            this.glTest.Location = new System.Drawing.Point(643, 269);
+            this.glTest.Name = "glTest";
+            this.glTest.Size = new System.Drawing.Size(150, 150);
+            this.glTest.TabIndex = 7;
+            this.glTest.VSync = false;
+            // 
+            // bgw
+            // 
+            this.bgw.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgw_DoWork);
+            this.bgw.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgw_RunWorkerCompleted);
+            // 
+            // bgw_red
+            // 
+            this.bgw_red.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgw_red_DoWork);
+            this.bgw_red.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgw_red_RunWorkerCompleted);
+            // 
+            // BallBoxLabel
+            // 
+            this.BallBoxLabel.Location = new System.Drawing.Point(637, 14);
+            this.BallBoxLabel.Name = "BallBoxLabel";
+            this.BallBoxLabel.ReadOnly = true;
+            this.BallBoxLabel.Size = new System.Drawing.Size(144, 20);
+            this.BallBoxLabel.TabIndex = 8;
+            this.BallBoxLabel.Text = "Squeeze the Ball!";
             // 
             // ExerciseScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(850, 431);
+            this.Controls.Add(this.BallBoxLabel);
+            this.Controls.Add(this.glTest);
             this.Controls.Add(this.ballBox);
             this.Controls.Add(this.fingerDistanceValue);
             this.Controls.Add(this.label1);
@@ -95,5 +129,9 @@
         private System.Windows.Forms.Label fingerDistanceValue;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox ballBox;
+        private OpenTK.GLControl glTest;
+        private System.ComponentModel.BackgroundWorker bgw;
+        private System.ComponentModel.BackgroundWorker bgw_red;
+        private System.Windows.Forms.TextBox BallBoxLabel;
     }
 }
