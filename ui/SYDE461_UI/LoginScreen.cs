@@ -29,8 +29,7 @@ namespace SYDE461_UI
         {
             InitializeComponent();
         }
-
-        //Button for creating a new user
+        //Button for loging in user
         //We should really rename these buttons into something more descriptive
         private void loginButton_Click(object sender, EventArgs e)
         {
@@ -44,32 +43,38 @@ namespace SYDE461_UI
             //If the user input matchs existing user information then open the user's welcomescreen and info
             if (storedusers.ContainsKey(loginInfo.getUsername()))
             {
-                if(storedusers[loginInfo.getUsername()] == textBox2.Text)
+                if (storedusers[loginInfo.getUsername()] == textBox2.Text)
                 {
                     //Create and show a main menu screen for the specific user
-                    WelcomeScreen MainMenu = new WelcomeScreen(loginInfo);
+                    WelcomeScreen MainMenu = new WelcomeScreen(loginInfo, this);
                     MainMenu.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("Error! Invalid password!");
                 }
             }
             else
             {
                 // If the login fails show a screen that will inform the user
                 // Should provide useful information to user
-                MessageBox.Show("Error! Invalid Password or Username");
+                MessageBox.Show("Error! Invalid user name!");
                // LoginFail failed = new LoginFail();
             }
         }
 
-        //
-        private void button2_Click(object sender, EventArgs e)
+
+        //Button for creating a new user
+        //We should really rename these buttons into something more descriptive
+        private void createUser_Click(object sender, EventArgs e)
         {
 
             CreateNewUser NewUser = new CreateNewUser(this);
             NewUser.ShowDialog();
             UserInfo newInfo = NewUser.getuserinput();
-            textBox1.Text = newInfo.getUsername();
-            textBox2.Text = newInfo.getPassword();
-            NewUser.Close();
+            this.fillUsernameAndPass(NewUser, newInfo);
+
+            //NewUser.Close();
 
             //UserControl1 NewUser2 = new UserControl1();
 
@@ -77,9 +82,9 @@ namespace SYDE461_UI
 
         public void fillUsernameAndPass(CreateNewUser newUser, UserInfo newInfo)
         {
-            username = newInfo.getUsername();
-            password = newInfo.getPassword();
-            //NewUser.Close();
+            textBox1.Text = newInfo.getUsername();
+            textBox2.Text = newInfo.getPassword();
+            newUser.Close();
 
             //UserControl1 NewUser2 = new UserControl1();
 
@@ -101,6 +106,7 @@ namespace SYDE461_UI
                 //for now, assume user info stored in adjacent username/password pairs
                 for (int i = 0; i < readText.Length; i+=2)
                 {
+                    if (!storedusers.ContainsKey(readText[i].ToString()))
                     storedusers.Add(readText[i].ToString(),readText[i+1].ToString());
                 }
 

@@ -10,7 +10,12 @@ namespace SYDE461_UI
     {
         //Basic user info
         private String username;
+        private String firstname;
+        private String lastname;
         private String password;
+        private DateTime dateofbirth;
+        public enum Gender { unassigned, male, female };
+        private Gender gender;
 
         //Eventually add something here that will allow 
         //UserHistoryData object to be associated with UserInfo
@@ -27,6 +32,14 @@ namespace SYDE461_UI
         {
             username = name;
             password = pass;
+        }
+
+        public UserInfo(String name, String pass, DateTime DOB, Gender mf)
+        {
+            username = name;
+            password = pass;
+            dateofbirth = DOB;
+            gender = mf;
         }
 
         //Method for setting userInfo for the first time
