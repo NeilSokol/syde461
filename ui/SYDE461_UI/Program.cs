@@ -23,8 +23,6 @@ namespace SYDE461_UI
             LoginScreen logscreen = new LoginScreen();
             Application.Run(logscreen);
 
-
-
         }
     }
 }

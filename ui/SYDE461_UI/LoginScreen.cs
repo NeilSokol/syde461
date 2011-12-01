@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.IO;
 using System.Windows.Forms;
 
 namespace SYDE461_UI
@@ -15,6 +16,9 @@ namespace SYDE461_UI
         //create holders for user input
         String username = "";
         String password = "";
+
+        //User Dictionary Storage
+        public Dictionary<String, String> storedusers = new Dictionary<string,string>();
 
         // create a holder in case need to create a new user
         // This seems really sloppy, so we'll probably change this
@@ -28,7 +32,7 @@ namespace SYDE461_UI
 
         //Button for creating a new user
         //We should really rename these buttons into something more descriptive
-        private void button1_Click(object sender, EventArgs e)
+        private void loginButton_Click(object sender, EventArgs e)
         {
 
             //create a UserInfo instance with the user input
@@ -36,20 +40,23 @@ namespace SYDE461_UI
 
             //Insert check for username and password
             //Need to check user input to all existing UserInfo instances
-            bool match = true;
 
             //If the user input matchs existing user information then open the user's welcomescreen and info
-            if ((match == true))
+            if (storedusers.ContainsKey(loginInfo.getUsername()))
             {
-                //Create and show a main menu screen for the specific user
-                WelcomeScreen MainMenu = new WelcomeScreen(loginInfo);
-                MainMenu.ShowDialog();
+                if(storedusers[loginInfo.getUsername()] == textBox2.Text)
+                {
+                    //Create and show a main menu screen for the specific user
+                    WelcomeScreen MainMenu = new WelcomeScreen(loginInfo);
+                    MainMenu.ShowDialog();
+                }
             }
             else
             {
                 // If the login fails show a screen that will inform the user
                 // Should provide useful information to user
-                LoginFail failed = new LoginFail();
+                MessageBox.Show("Error! Invalid Password or Username");
+               // LoginFail failed = new LoginFail();
             }
         }
 
@@ -76,6 +83,32 @@ namespace SYDE461_UI
 
             //UserControl1 NewUser2 = new UserControl1();
 
+        }
+
+        private void LoginScreen_Load(object sender, EventArgs e)
+        {
+            //Check if user information file exists, create if not
+            if (!File.Exists(Directory.GetCurrentDirectory() + "\\userlist.txt"))
+            {
+               FileStream fs = File.Create(Directory.GetCurrentDirectory() + "\\userlist.txt");
+               fs.Close();
+            }
+            //read in current user info file
+            try
+            {
+                string[] readText = File.ReadAllLines(Directory.GetCurrentDirectory() + "\\userlist.txt");
+                
+                //for now, assume user info stored in adjacent username/password pairs
+                for (int i = 0; i < readText.Length; i+=2)
+                {
+                    storedusers.Add(readText[i].ToString(),readText[i+1].ToString());
+                }
+
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
     }
 }

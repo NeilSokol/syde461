@@ -32,6 +32,7 @@ namespace SYDE461_UI
             // Create new exercise screen and show to user
             ExerciseScreen exerciseScreen = new ExerciseScreen();
             exerciseScreen.ShowDialog();
+
         }
 
         // When user selects user history screen
