@@ -8,13 +8,17 @@ namespace SYDE461_UI
     // This class is for collecting exercise information
     class ExerciseData
     {
+        public String exerciseName;
+        public String exerciseDescription;
+        public String instructions;
+
+
         //THINGS TO INCLUDE: 
         //exercise name
         //exercise description
         //exercise instructions
         //exercise video
         //
-        String exerciseName;
         //
     
     }

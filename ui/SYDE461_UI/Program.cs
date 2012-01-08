@@ -20,7 +20,9 @@ namespace SYDE461_UI
             Application.SetCompatibleTextRenderingDefault(false);
             
             //create login screen and show
-            LoginScreen logscreen = new LoginScreen();
+            //LoginScreen logscreen = new LoginScreen();
+            //Application.Run(logscreen);
+            ExerciseScreen logscreen = new ExerciseScreen();
             Application.Run(logscreen);
 
         }
