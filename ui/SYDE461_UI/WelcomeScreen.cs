@@ -18,12 +18,12 @@ namespace SYDE461_UI
 
         //initialization of screen
         //passes in user info from login screen
-        public WelcomeScreen(UserInfo loginInfo)
+        public WelcomeScreen(UserInfo loginInfo, LoginScreen login)
         {
             user = loginInfo;
             username = loginInfo.getUsername();
             InitializeComponent();
-            
+            //login.Hide();
         }
 
         // When user selects exercise screen
