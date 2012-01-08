@@ -60,7 +60,7 @@
             this.label1.Name = "label1";
             // Visual Studio doesn't like this for some reason, 
             // but it's declared in WelcomeScreen.cs
-            this.label1.Text = "Welcome " + username + "!";
+
             this.label1.Size = new System.Drawing.Size(0, 13);
             this.label1.TabIndex = 2;
             // 

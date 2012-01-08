@@ -21,6 +21,9 @@ namespace SYDE461_UI
             
             //create login screen and show
             LoginScreen logscreen = new LoginScreen();
+           // Application.Run(logscreen);
+           // ExerciseScreen logscreen = new ExerciseScreen();
+            //InstructionVideo logscreen = new InstructionVideo();
             Application.Run(logscreen);
 
         }

@@ -8,8 +8,8 @@
     <ProjectGuid>{F1216433-6B59-481A-8A9D-D806C99529E5}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WindowsFormsApplication1</RootNamespace>
-    <AssemblyName>WindowsFormsApplication1</AssemblyName>
+    <RootNamespace>SYDE461_UI</RootNamespace>
+    <AssemblyName>SYDE461_UI</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -40,7 +40,7 @@
     </Reference>
     <Reference Include="AForge.Imaging, Version=2.2.2.0, Culture=neutral, PublicKeyToken=ba8ddea9676ca48b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\AForge.NET\Framework\Release\AForge.Imaging.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\AForge.NET\Framework\Sources\Imaging\bin\Debug\AForge.Imaging.dll</HintPath>
     </Reference>
     <Reference Include="AForge.Vision, Version=2.2.2.0, Culture=neutral, PublicKeyToken=b612fa915eefaa06, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -68,6 +68,12 @@
   <ItemGroup>
     <Compile Include="Ball.cs" />
     <Compile Include="ExerciseStore.cs" />
+    <Compile Include="InstructionVideo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InstructionVideo.Designer.cs">
+      <DependentUpon>InstructionVideo.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserInfoStore.cs" />
     <Compile Include="ExerciseData.cs" />
     <Compile Include="UserHistoryData.cs" />
@@ -98,12 +104,6 @@
     <Compile Include="WelcomeScreen.Designer.cs">
       <DependentUpon>WelcomeScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="LoginFail.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="LoginFail.Designer.cs">
-      <DependentUpon>LoginFail.cs</DependentUpon>
-    </Compile>
     <Compile Include="UserInfo.cs" />
     <Compile Include="CreateNewUser.cs">
       <SubType>Form</SubType>
@@ -125,8 +125,8 @@
     <EmbeddedResource Include="ExerciseScreen.resx">
       <DependentUpon>ExerciseScreen.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LoginFail.resx">
-      <DependentUpon>LoginFail.cs</DependentUpon>
+    <EmbeddedResource Include="InstructionVideo.resx">
+      <DependentUpon>InstructionVideo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginScreen.resx">
       <DependentUpon>LoginScreen.cs</DependentUpon>
@@ -139,6 +139,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="ShutdownScreen.resx">
       <DependentUpon>ShutdownScreen.cs</DependentUpon>
@@ -149,6 +150,8 @@
     <EmbeddedResource Include="WelcomeScreen.resx">
       <DependentUpon>WelcomeScreen.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -164,6 +167,25 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AxWMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="WMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

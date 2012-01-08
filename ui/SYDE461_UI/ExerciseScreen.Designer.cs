@@ -34,7 +34,7 @@
             this.ballBox = new System.Windows.Forms.PictureBox();
             this.bgw = new System.ComponentModel.BackgroundWorker();
             this.bgw_red = new System.ComponentModel.BackgroundWorker();
-            this.BallBoxLabel = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ballBox)).BeginInit();
             this.SuspendLayout();
@@ -82,21 +82,21 @@
             this.bgw_red.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgw_red_DoWork);
             this.bgw_red.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgw_red_RunWorkerCompleted);
             // 
-            // BallBoxLabel
+            // label2
             // 
-            this.BallBoxLabel.Location = new System.Drawing.Point(637, 14);
-            this.BallBoxLabel.Name = "BallBoxLabel";
-            this.BallBoxLabel.ReadOnly = true;
-            this.BallBoxLabel.Size = new System.Drawing.Size(144, 20);
-            this.BallBoxLabel.TabIndex = 8;
-            this.BallBoxLabel.Text = "Squeeze the Ball!";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(703, 25);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(90, 13);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Squeeze the Ball!";
             // 
             // ExerciseScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(850, 431);
-            this.Controls.Add(this.BallBoxLabel);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.ballBox);
             this.Controls.Add(this.fingerDistanceValue);
             this.Controls.Add(this.label1);
@@ -120,6 +120,6 @@
         private System.Windows.Forms.PictureBox ballBox;
         private System.ComponentModel.BackgroundWorker bgw;
         private System.ComponentModel.BackgroundWorker bgw_red;
-        private System.Windows.Forms.TextBox BallBoxLabel;
+        private System.Windows.Forms.Label label2;
     }
 }

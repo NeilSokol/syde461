@@ -1,4 +1,7 @@
-﻿using System;
+﻿/*TO DO TOMORROW! PUT BOTH RED AND YELLOW PROCESSIGN THREADS INTO ONE, SHOULD PREVENT ISSUE WITH CURRENT UNKNOWN INVOKE EXCEPTION*/
+
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +18,8 @@ using System.Threading;
 using AForge.Imaging;
 using AForge.Vision;
 using AForge;
+using OpenTK.Graphics;
+using OpenTK.Graphics.OpenGL;
 
 namespace SYDE461_UI
 {
@@ -40,7 +45,7 @@ namespace SYDE461_UI
         Bitmap ballBack = new Bitmap(320, 240);
         AForge.Imaging.Filters.Subtract sub;
         AForge.Imaging.Filters.GrayscaleRMY gray = new AForge.Imaging.Filters.GrayscaleRMY();
-        AForge.Imaging.Filters.ThresholdedDifference thresh = new AForge.Imaging.Filters.ThresholdedDifference(10);
+        AForge.Imaging.Filters.ThresholdedDifference thresh = new AForge.Imaging.Filters.ThresholdedDifference(20);
         AForge.Imaging.Filters.GaussianBlur gauss = new AForge.Imaging.Filters.GaussianBlur(5, 1);
         AForge.Imaging.Filters.ResizeBilinear shrink = new AForge.Imaging.Filters.ResizeBilinear(320,240);
         AForge.Imaging.Filters.ResizeBilinear grow = new AForge.Imaging.Filters.ResizeBilinear(640, 480);
@@ -48,15 +53,13 @@ namespace SYDE461_UI
         AForge.Imaging.Filters.ConnectedComponentsLabeling connectedfilter = new AForge.Imaging.Filters.ConnectedComponentsLabeling();
         AForge.Imaging.Filters.ColorFiltering yellowfilter = new AForge.Imaging.Filters.ColorFiltering();
         AForge.Imaging.Filters.ColorFiltering redfilter = new AForge.Imaging.Filters.ColorFiltering();
-        AForge.Imaging.Filters.Threshold thresholdfilter = new AForge.Imaging.Filters.Threshold(10);
+        AForge.Imaging.Filters.Threshold thresholdfilter = new AForge.Imaging.Filters.Threshold(5);
         AForge.Imaging.Filters.Dilatation morphDilate = new AForge.Imaging.Filters.Dilatation();
         AForge.Imaging.Filters.Mean meanfilter = new AForge.Imaging.Filters.Mean();
         AForge.Imaging.BlobCounter blobCounter = new AForge.Imaging.BlobCounter();
         AForge.Imaging.Filters.YCbCrExtractChannel extractFilter = new AForge.Imaging.Filters.YCbCrExtractChannel(YCbCr.YIndex);
         AForge.Vision.Motion.TwoFramesDifferenceDetector detect = new AForge.Vision.Motion.TwoFramesDifferenceDetector(true);
-        WindowsFormsApplication1.Ball testBall = null;
-        private Thread redThread;
-        private Thread yellowThread;
+        Ball testBall = null;
 
         public void FrameReady(object sender, ImageFrameReadyEventArgs e)
         {
@@ -86,9 +89,10 @@ namespace SYDE461_UI
             amask.ApplyInPlace(colorbmap);
 
             yellowbmap = yellowfilter.Apply(colorbmap);
+            yellowbmap.Tag = "Yellow";
             redbmap = redfilter.Apply(colorbmap);
+            redbmap.Tag = "Red";
             colorbmap = extractFilter.Apply(colorbmap);
-            //pictureBox1.Image = bmap;
             //bmap = connectedfilter.Apply(colorbmap);
             // check objects count
             //objectCount = connectedfilter.ObjectCount;
@@ -97,32 +101,18 @@ namespace SYDE461_UI
             //process yellow (index finger)         
 
             //If new yellow blobs processed
-            if (gotYellow)
+            if (gotYellow & gotRed)
             {
                 gotYellow = false;
-
-                try
-                {
-                    bgw.RunWorkerAsync(yellowbmap.Clone());
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("YELLOW THREAD FAIL!!!");
-                }
-            }
-
-            if (gotRed)
-            {
                 gotRed = false;
-                try
-                {
-                    bgw_red.RunWorkerAsync(redbmap.Clone());
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Red THREAD FAIL!!!");
-                }
+                bgw.RunWorkerAsync(yellowbmap);
             }
+
+            //if (gotRed)
+            //{
+            //    gotRed = false;
+            //    bgw_red.RunWorkerAsync(redbmap);
+            //}
 
             //process red (thumb)
 
@@ -130,51 +120,35 @@ namespace SYDE461_UI
 
                      
 
-              fingerdistance = Math.Sqrt(Math.Pow(Math.Abs(red_x - yellow_x), 2) + Math.Pow(Math.Abs(red_y - yellow_y), 2));
-              fingerdistance = red_x;
-              //make sure distance not zero
-              if (fingerdistance <= 0)
-              {
-                  fingerdistance = 1;
-              }
-              fingerDistanceValue.Text = fingerdistance.ToString();
+            //  fingerdistance = Math.Sqrt(Math.Pow(Math.Abs(red_x - yellow_x), 2) + Math.Pow(Math.Abs(red_y - yellow_y), 2));
+             // fingerdistance = red_x;
+             fingerDistanceValue.Text = testBall.fingerdistance.ToString();
               
-           /*   if (fingerdistance<= 120)
+              testBall.UpdateBall(fingerdistance);
+
+              try
               {
-                  fingerdistance += 1;
+                  pictureBox1.Image = yellowbmap;
               }
-              else
+              catch(Exception ex)
               {
-                  fingerdistance = 1;
+                  MessageBox.Show(ex.ToString());
               }
-            */
-              testBall.UpdateBall((int)(fingerdistance));
-            
-              pictureBox1.Image = redbmap;
-              //ballBox.Image = ballBack;
-              ballBox.Image = yellowbmap;
+              ballBox.Image = ballBack;
         }
 
-        private Blob[] findBlobs(Bitmap bmap)
+        Blob[] findBlobs(Bitmap bmap)
         {
-            try
-            {
-                bmap = gray.Apply(bmap);
-                thresholdfilter.ApplyInPlace(bmap);
-                morphDilate.ApplyInPlace(bmap);
-                morphDilate.ApplyInPlace(bmap);
-                morphDilate.ApplyInPlace(bmap);
-                meanfilter.ApplyInPlace(bmap);
-                blobfilter.ApplyInPlace(bmap);
-                blobCounter.ProcessImage(bmap);
-                Blob[] blobs = blobCounter.GetObjectsInformation();
-                return blobs;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("findBlobs failed");
-                return blobs;
-            }
+            bmap = gray.Apply(bmap);
+            thresholdfilter.ApplyInPlace(bmap);
+            morphDilate.ApplyInPlace(bmap);
+            morphDilate.ApplyInPlace(bmap);
+            morphDilate.ApplyInPlace(bmap);
+            meanfilter.ApplyInPlace(bmap);
+            bmap = blobfilter.Apply(bmap);
+            blobCounter.ProcessImage(bmap);
+            Blob[] blobs = blobCounter.GetObjectsInformation();
+            return blobs;
         }
 
         void DepthFrameReady(object sender, ImageFrameReadyEventArgs e)
@@ -189,7 +163,7 @@ namespace SYDE461_UI
             BitmapData bmapdata = bmap.LockBits(new Rectangle(0, 0, PImage.Width, PImage.Height), ImageLockMode.WriteOnly, bmap.PixelFormat);
             IntPtr ptr = bmapdata.Scan0;
             Marshal.Copy(PImage.Bits, 0, ptr, PImage.Width * PImage.Height * PImage.BytesPerPixel);
-            bmap.UnlockBits(bmapdata);
+            bmap.UnlockBits(bmapdata);  
             return bmap;
         }
 
@@ -232,6 +206,9 @@ namespace SYDE461_UI
 
         private void ExerciseScreen_Load(object sender, EventArgs e)
         {
+
+            InstructionVideo vid = new InstructionVideo();
+            vid.ShowDialog();
             nui.Initialize(RuntimeOptions.UseColor|RuntimeOptions.UseDepth);
             nui.VideoStream.Open(ImageStreamType.Video, 2, ImageResolution.Resolution640x480, ImageType.Color);
             nui.VideoFrameReady += new EventHandler<ImageFrameReadyEventArgs>(FrameReady);
@@ -243,13 +220,19 @@ namespace SYDE461_UI
             blobfilter.MinHeight = 2;
 
             //Set up color parameters for red and yellow color filters
+            //yellowfilter.Red = new IntRange(100, 255);
+            //yellowfilter.Green = new IntRange(100, 255);
+            //yellowfilter.Blue = new IntRange(0, 10);
+            //redfilter.Red = new IntRange(30, 255);
+            //redfilter.Green = new IntRange(0, 20);
+            //redfilter.Blue = new IntRange(0, 20); 
             yellowfilter.Red = new IntRange(100, 255);
             yellowfilter.Green = new IntRange(100, 255);
-            yellowfilter.Blue = new IntRange(0, 10);
-            redfilter.Red = new IntRange(20, 255);
-            redfilter.Green = new IntRange(0, 20);
-            redfilter.Blue = new IntRange(0, 20);
-            testBall = new WindowsFormsApplication1.Ball(ballBack, 1600);
+            yellowfilter.Blue = new IntRange(0, 100);
+            redfilter.Red = new IntRange(50, 255);
+            redfilter.Green = new IntRange(0, 40);
+            redfilter.Blue = new IntRange(0, 40);
+            testBall = new Ball(ballBack, 1600.00);
         }
 
         private void ExerciseScreen_FormClosing(object sender, FormClosingEventArgs e)
@@ -259,26 +242,47 @@ namespace SYDE461_UI
 
         private void bgw_DoWork(object sender, DoWorkEventArgs e)
         {
-            Bitmap bmap = e.Argument as Bitmap;
-            e.Result = (Blob[])findBlobs(bmap);
+            //Bitmap bmap = e.Argument as Bitmap;
+            //e.Result = (Blob[])findBlobs(bmap);
+
+            blobsyellow = (Blob[])findBlobs(yellowbmap);
+            blobsred = (Blob[])findBlobs(redbmap);
+            foreach (Blob blob in blobsyellow)
+            {
+                if (blob.Area >= 100)
+                {
+                    this.testBall.yellowx = (double)(blob.Rectangle.X + blob.Rectangle.Width / 2);
+                    this.testBall.yellowy = (double)(blob.Rectangle.Y + blob.Rectangle.Height / 2);
+                }
+
+            }
+            foreach (Blob blob in blobsred)
+            {
+                if (blob.Area >= 100)
+                {
+                    this.testBall.redx = (double)(blob.Rectangle.X + blob.Rectangle.Width / 2);
+                    this.testBall.redy = (double)(blob.Rectangle.Y + blob.Rectangle.Height / 2);
+                }
+
+            }
+
         }
-        
+
+
         private void bgw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            blobsyellow = (Blob[])e.Result;
-            if (blobsyellow.Length > 0)
-            {
-                foreach (Blob blob in blobsyellow)
-                {
-                    if (blob.Area >= 10)
-                    {
-                        this.yellow_x = (double)(blob.Rectangle.X + blob.Rectangle.Width / 2);
-                        yellow_y = (double)(blob.Rectangle.Y + blob.Rectangle.Height / 2);
-                    }
+            //blobsyellow = e.Result as Blob[];
+            //foreach (Blob blob in blobsyellow)
+            //{
+            //    if (blob.Area >= 10)
+            //    {
+            //        this.testBall.yellowx = (double)(blob.Rectangle.X + blob.Rectangle.Width / 2);
+            //        this.testBall.yellowy = (double)(blob.Rectangle.Y + blob.Rectangle.Height / 2);
+            //    }
 
-                }
-            }
+            //}
             gotYellow = true;
+            gotRed = true;
         }
 
         private void bgw_red_DoWork(object sender, DoWorkEventArgs e)
@@ -290,20 +294,17 @@ namespace SYDE461_UI
         private void bgw_red_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             blobsred = (Blob[])e.Result;
-
-            if (blobsred.Length > 0)
+            foreach (Blob blob in blobsred)
             {
-                foreach (Blob blob in blobsred)
+                if (blob.Area >= 10)
                 {
-                    if (blob.Area >= 3)
-                    {
-                        this.red_x = (double)(blob.Rectangle.X + blob.Rectangle.Width / 2);
-                        red_y = (double)(blob.Rectangle.Y + blob.Rectangle.Height / 2);
-                    }
-
+                    this.testBall.redx = (double)(blob.Rectangle.X + blob.Rectangle.Width / 2);
+                    this.testBall.redy = (double)(blob.Rectangle.Y + blob.Rectangle.Height / 2);
                 }
+
             }
             gotRed = true;
+          
         }
     }
 }

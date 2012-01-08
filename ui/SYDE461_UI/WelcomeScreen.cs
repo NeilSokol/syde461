@@ -23,16 +23,20 @@ namespace SYDE461_UI
             user = loginInfo;
             username = loginInfo.getUsername();
             InitializeComponent();
+            this.label1.Text = "Welcome " + username + "!";
             
         }
 
         // When user selects exercise screen
         private void button1_Click(object sender, EventArgs e)
         {
+
+            //Explain exercise to the user
+
+
             // Create new exercise screen and show to user
             ExerciseScreen exerciseScreen = new ExerciseScreen();
             exerciseScreen.ShowDialog();
-
         }
 
         // When user selects user history screen
