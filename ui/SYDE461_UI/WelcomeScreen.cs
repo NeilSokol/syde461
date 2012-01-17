@@ -35,7 +35,7 @@ namespace SYDE461_UI
 
 
             // Create new exercise screen and show to user
-            ExerciseScreen exerciseScreen = new ExerciseScreen();
+            ExerciseScreen exerciseScreen = new ExerciseScreen(username);
             exerciseScreen.ShowDialog();
         }
 
@@ -43,8 +43,13 @@ namespace SYDE461_UI
         private void button2_Click(object sender, EventArgs e)
         {
             //Create user history screen and show to user
-            UserHistoryScreen UserHistory = new UserHistoryScreen();
+            UserHistoryScreen UserHistory = new UserHistoryScreen(username);
             UserHistory.ShowDialog();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
     }

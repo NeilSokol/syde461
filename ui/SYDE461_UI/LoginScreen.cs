@@ -28,6 +28,7 @@ namespace SYDE461_UI
         public LoginScreen()
         {
             InitializeComponent();
+            //textBox1.Text = Directory.GetCurrentDirectory();
         }
 
         //Button for creating a new user
@@ -46,16 +47,24 @@ namespace SYDE461_UI
             {
                 if(storedusers[loginInfo.getUsername()] == textBox2.Text)
                 {
+                    //MessageBox.Show("Yay! User exists");
                     //Create and show a main menu screen for the specific user
                     WelcomeScreen MainMenu = new WelcomeScreen(loginInfo);
                     MainMenu.ShowDialog();
+                }
+                else
+                {
+                    // If the login fails show a screen that will inform the user
+                    // Should provide useful information to user
+                    MessageBox.Show("Error! Password is incorrect!");
+                    // LoginFail failed = new LoginFail();
                 }
             }
             else
             {
                 // If the login fails show a screen that will inform the user
                 // Should provide useful information to user
-                MessageBox.Show("Error! Invalid Password or Username");
+                MessageBox.Show("Error! Invalid Username.");
                // LoginFail failed = new LoginFail();
             }
         }

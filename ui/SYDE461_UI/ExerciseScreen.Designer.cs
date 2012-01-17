@@ -72,16 +72,6 @@
             this.ballBox.TabIndex = 6;
             this.ballBox.TabStop = false;
             // 
-            // bgw
-            // 
-            this.bgw.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgw_DoWork);
-            this.bgw.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgw_RunWorkerCompleted);
-            // 
-            // bgw_red
-            // 
-            this.bgw_red.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgw_red_DoWork);
-            this.bgw_red.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgw_red_RunWorkerCompleted);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
