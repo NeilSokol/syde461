@@ -32,11 +32,13 @@
             this.fingerDistanceValue = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.ballBox = new System.Windows.Forms.PictureBox();
-            this.bgw = new System.ComponentModel.BackgroundWorker();
-            this.bgw_red = new System.ComponentModel.BackgroundWorker();
             this.label2 = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.comboBoxHealth = new System.Windows.Forms.ComboBox();
+            this.labelStroke = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ballBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -81,11 +83,40 @@
             this.label2.TabIndex = 7;
             this.label2.Text = "Squeeze the Ball!";
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Location = new System.Drawing.Point(839, 41);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(357, 222);
+            this.pictureBox2.TabIndex = 8;
+            this.pictureBox2.TabStop = false;
+            // 
+            // comboBoxHealth
+            // 
+            this.comboBoxHealth.FormattingEnabled = true;
+            this.comboBoxHealth.Location = new System.Drawing.Point(792, 360);
+            this.comboBoxHealth.Name = "comboBoxHealth";
+            this.comboBoxHealth.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxHealth.TabIndex = 9;
+            this.comboBoxHealth.SelectedIndexChanged += new System.EventHandler(this.comboBoxHealth_SelectedIndexChanged);
+            // 
+            // labelStroke
+            // 
+            this.labelStroke.AutoSize = true;
+            this.labelStroke.Location = new System.Drawing.Point(792, 336);
+            this.labelStroke.Name = "labelStroke";
+            this.labelStroke.Size = new System.Drawing.Size(79, 13);
+            this.labelStroke.TabIndex = 10;
+            this.labelStroke.Text = "Stroke Severity";
+            // 
             // ExerciseScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(850, 431);
+            this.ClientSize = new System.Drawing.Size(1233, 431);
+            this.Controls.Add(this.labelStroke);
+            this.Controls.Add(this.comboBoxHealth);
+            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.ballBox);
             this.Controls.Add(this.fingerDistanceValue);
@@ -97,6 +128,7 @@
             this.Load += new System.EventHandler(this.ExerciseScreen_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ballBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -108,8 +140,11 @@
         public System.Windows.Forms.Label fingerDistanceValue;
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.PictureBox ballBox;
-        public System.ComponentModel.BackgroundWorker bgw;
-        public System.ComponentModel.BackgroundWorker bgw_red;
+        //public System.ComponentModel.BackgroundWorker bgw;
+        //public System.ComponentModel.BackgroundWorker bgw_red;
         private System.Windows.Forms.Label label2;
+        public System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.ComboBox comboBoxHealth;
+        private System.Windows.Forms.Label labelStroke;
     }
 }

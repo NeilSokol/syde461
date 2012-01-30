@@ -28,6 +28,7 @@ namespace SYDE461_UI
         String user;
         PinchExercise exercise;
         
+        
         public ExerciseScreen(String username)
         {
             user = username;
@@ -38,7 +39,7 @@ namespace SYDE461_UI
         {
 
             InstructionVideo vid = new InstructionVideo("Pinch.wmv");
-            vid.ShowDialog();
+            //vid.ShowDialog();
             //this.label2.Text = vid.vidLocation;
 
             exercise = new PinchExercise(this);
@@ -51,6 +52,11 @@ namespace SYDE461_UI
         private void ExerciseScreen_FormClosing(object sender, FormClosingEventArgs e)
         {
             exercise.end();
+        }
+
+        private void comboBoxHealth_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
 
     }
