@@ -22,6 +22,7 @@ namespace SYDE461_UI
 {
     class PinchExercise: ExerciseData
     {
+        Runtime nui = new Runtime();
         Bitmap back;
         Bitmap depth;
         Bitmap colorbmap;
@@ -56,21 +57,23 @@ namespace SYDE461_UI
         AForge.Imaging.Filters.YCbCrExtractChannel extractFilter = new AForge.Imaging.Filters.YCbCrExtractChannel(YCbCr.YIndex);
         AForge.Vision.Motion.TwoFramesDifferenceDetector detect = new AForge.Vision.Motion.TwoFramesDifferenceDetector(true);
         Ball testBall = null;
-        String fingerDistanceValue;
-        PictureBox ballBox;
-        PictureBox pictureBox1;
-        BackgroundWorker bgw;
-        BackgroundWorker bgw_red;
-        
+        //String fingerDistanceValue;
+        //PictureBox ballBox;
+        //PictureBox pictureBox1;
+        //BackgroundWorker bgw;
+        //BackgroundWorker bgw_red;
+        ExerciseScreen output;
 
         //Default constructor
-        PinchExercise()
+        public PinchExercise(ExerciseScreen caller)
         {
             exerciseName = "Pinch Exercise";
             exerciseDescription = "This exercise is...";
             instructions = "Pinch the ball shown on the screen";
             //video = new InstructionVideo();
             video = new InstructionVideo("Pinch.wmv");
+            output = caller;
+
         }
 
         //Get data
@@ -124,7 +127,7 @@ namespace SYDE461_UI
             {
                 gotYellow = false;
                 gotRed = false;
-                bgw.RunWorkerAsync(yellowbmap);
+                output.bgw.RunWorkerAsync(yellowbmap);
             }
 
             //if (gotRed)
@@ -141,19 +144,20 @@ namespace SYDE461_UI
 
             //  fingerdistance = Math.Sqrt(Math.Pow(Math.Abs(red_x - yellow_x), 2) + Math.Pow(Math.Abs(red_y - yellow_y), 2));
             // fingerdistance = red_x;
-            fingerDistanceValue = testBall.fingerdistance.ToString();
+            output.fingerDistanceValue.Text = testBall.fingerdistance.ToString();
 
             testBall.UpdateBall(fingerdistance);
 
             try
             {
-                pictureBox1.Image = yellowbmap;
+            //    output.fingerDistanceValue.Text = "this is pinch talking";
+                output.pictureBox1.Image = yellowbmap;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
-            ballBox.Image = ballBack;
+            output.ballBox.Image = ballBack;
         }
 
         Blob[] findBlobs(Bitmap bmap)
@@ -287,13 +291,14 @@ namespace SYDE461_UI
 
         }
 
-        private void start()
+        public void start()
         {
-         nui.VideoStream.Open(ImageStreamType.Video, 2, ImageResolution.Resolution640x480, ImageType.Color);
+            nui.Initialize(RuntimeOptions.UseColor | RuntimeOptions.UseColor);
+            nui.VideoStream.Open(ImageStreamType.Video, 2, ImageResolution.Resolution640x480, ImageType.Color);
             nui.VideoFrameReady += new EventHandler<ImageFrameReadyEventArgs>(FrameReady);
 
-            nui.DepthStream.Open(ImageStreamType.Depth, 2, ImageResolution.Resolution320x240, ImageType.Depth);
-            nui.DepthFrameReady += new EventHandler<ImageFrameReadyEventArgs>(DepthFrameReady);
+        //    nui.DepthStream.Open(ImageStreamType.Depth, 2, ImageResolution.Resolution320x240, ImageType.Depth);
+          //  nui.DepthFrameReady += new EventHandler<ImageFrameReadyEventArgs>(DepthFrameReady);
 
             blobfilter.MinWidth = 2;
             blobfilter.MinHeight = 2;
@@ -312,6 +317,11 @@ namespace SYDE461_UI
             redfilter.Green = new IntRange(0, 40);
             redfilter.Blue = new IntRange(0, 40);
             testBall = new Ball(ballBack, 1600.00);
+        }
+
+        public void end()
+        {
+            nui.Uninitialize();
         }
     }
 }

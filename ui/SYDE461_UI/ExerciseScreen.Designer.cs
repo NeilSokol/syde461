@@ -104,12 +104,12 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label fingerDistanceValue;
+        public System.Windows.Forms.PictureBox pictureBox1;
+        public System.Windows.Forms.Label fingerDistanceValue;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.PictureBox ballBox;
-        private System.ComponentModel.BackgroundWorker bgw;
-        private System.ComponentModel.BackgroundWorker bgw_red;
+        public System.Windows.Forms.PictureBox ballBox;
+        public System.ComponentModel.BackgroundWorker bgw;
+        public System.ComponentModel.BackgroundWorker bgw_red;
         private System.Windows.Forms.Label label2;
     }
 }

@@ -26,6 +26,7 @@ namespace SYDE461_UI
     public partial class ExerciseScreen : Form
     {
         String user;
+        PinchExercise exercise;
         
         public ExerciseScreen(String username)
         {
@@ -38,14 +39,18 @@ namespace SYDE461_UI
 
             InstructionVideo vid = new InstructionVideo("Pinch.wmv");
             vid.ShowDialog();
-            this.label2.Text = vid.vidLocation;
+            //this.label2.Text = vid.vidLocation;
+
+            exercise = new PinchExercise(this);
+            exercise.start();
+            //add analysis stuff
         }
 
         
 
         private void ExerciseScreen_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
+            exercise.end();
         }
 
     }
