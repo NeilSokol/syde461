@@ -94,6 +94,11 @@
             // comboBoxHealth
             // 
             this.comboBoxHealth.FormattingEnabled = true;
+            this.comboBoxHealth.Items.AddRange(new object[] {
+            "No Stroke",
+            "6 Month Recovery",
+            "1 Month Recovery",
+            "Severe Stroke"});
             this.comboBoxHealth.Location = new System.Drawing.Point(792, 360);
             this.comboBoxHealth.Name = "comboBoxHealth";
             this.comboBoxHealth.Size = new System.Drawing.Size(121, 21);

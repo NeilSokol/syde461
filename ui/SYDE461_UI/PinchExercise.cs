@@ -27,8 +27,10 @@ namespace SYDE461_UI
         Bitmap depth;
         Bitmap colorbmap;
         Bitmap redbmap;
+        Bitmap redbmap2;
         Bitmap yellowbmap;
         Bitmap greenbmap;
+        Bitmap greenbmap2;
         Blob[] blobs;
         Blob[] blobsred;
         Blob[] blobsyellow;
@@ -38,6 +40,7 @@ namespace SYDE461_UI
         double yellow_y;
         double fingerdistance;
         int objectCount;
+        int patientHealth = 0;
         bool gotRed = true;
         bool gotYellow = true;
         Bitmap ballBack = new Bitmap(320, 240);
@@ -65,6 +68,7 @@ namespace SYDE461_UI
         BackgroundWorker bgw;
         BackgroundWorker bgw_red;
         ExerciseScreen output;
+        //double originalFingerDist;
 
         //Default constructor, pass caller so that can update picture boxes on exercise screen
         public PinchExercise(ExerciseScreen caller)
@@ -109,7 +113,7 @@ namespace SYDE461_UI
             bmap = shrink.Apply(bmap);
             
             ////added for testing
-            //Bitmap bmap2 = (Bitmap)bmap.Clone();
+            Bitmap bmap2 = (Bitmap)bmap.Clone();
             
             //make copy
             colorbmap = (Bitmap)bmap.Clone();
@@ -145,8 +149,10 @@ namespace SYDE461_UI
             yellowbmap.Tag = "Yellow";
             redbmap = redfilter.Apply(colorbmap);
             redbmap.Tag = "Red";
+            redbmap2 = (Bitmap)redbmap.Clone();
             greenbmap = greenfilter.Apply(colorbmap);
             greenbmap.Tag = "Green";
+            greenbmap2 = (Bitmap)greenbmap.Clone();
             colorbmap = extractFilter.Apply(colorbmap);
             //bmap = connectedfilter.Apply(colorbmap);
             // check objects count
@@ -189,6 +195,11 @@ namespace SYDE461_UI
 
             //process red (thumb)
 
+            //if (originalFingerDist <= 10)
+            //{
+            //    originalFingerDist = testBall.fingerdistance;
+            //    MessageBox.Show( "Baseline distance =" + originalFingerDist );
+            //}
 
 
             //fingerdistance = fingerdistance + 1;
@@ -199,27 +210,29 @@ namespace SYDE461_UI
             output.fingerDistanceValue.Text = testBall.fingerdistance.ToString();
 
             //MessageBox.Show(testBall.fingerdistance.ToString());
-            testBall.UpdateBall(fingerdistance);
+            testBall.UpdateBall(fingerdistance, bmap2);
+            //testBall.UpdateBall(fingerdistance);
 
             try
             {
                 //output.fingerDistanceValue.Text = "this is pinch talking";
                 //output.pictureBox1.Image = yellowbmap;
-                output.pictureBox1.Image = redbmap;
+                output.pictureBox1.Image = redbmap2;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
 
-            output.ballBox.Image = ballBack;
-            
+            //output.ballBox.Image = ballBack;
+
+            output.ballBox.Image = testBall.scene;
             //for testing
             //output.ballBox.Image = bmap2;
             //output.ballBox.Image = colorbmap;
             //output.pictureBox2.Image = redbmap;
             //output.pictureBox2.Image = yellowbmap;
-            output.pictureBox2.Image = greenbmap;
+            output.pictureBox2.Image = greenbmap2;
             //output.pictureBox2.Image = colorbmap;
         }
 
@@ -303,12 +316,15 @@ namespace SYDE461_UI
                 {
                     if (blob.Area > maxBlob)
                     {
+                        maxBlob = blob.Area;
                         this.testBall.yellowx = (double)(blob.Rectangle.X + blob.Rectangle.Width / 2);
                         this.testBall.yellowy = (double)(blob.Rectangle.Y + blob.Rectangle.Height / 2);
+
                     }
                 }
 
             }
+            //MessageBox.Show("Biggest Green blob" + maxBlob);
             maxBlob = 0;
             foreach (Blob blob in blobsred)
             {
@@ -316,13 +332,14 @@ namespace SYDE461_UI
                 {
                     if (blob.Area > maxBlob)
                     {
+                        maxBlob = blob.Area;
                         this.testBall.redx = (double)(blob.Rectangle.X + blob.Rectangle.Width / 2);
                         this.testBall.redy = (double)(blob.Rectangle.Y + blob.Rectangle.Height / 2);
                     }
                 }
 
             }
-
+            //MessageBox.Show("Biggest red blob" + maxBlob);
         }
 
 
@@ -362,6 +379,14 @@ namespace SYDE461_UI
             //}
             gotRed = true;
 
+        }
+
+
+        //comboBoxHealth  Functions
+
+        public void setHealth(int health)
+        {
+            patientHealth = health;
         }
 
         public void start()

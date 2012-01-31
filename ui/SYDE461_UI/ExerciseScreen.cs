@@ -56,7 +56,21 @@ namespace SYDE461_UI
 
         private void comboBoxHealth_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            switch(comboBoxHealth.SelectedItem.ToString())
+            {
+                case "No Stroke":
+                    exercise.setHealth(0);
+                break;
+                case "6 Month Recovery":
+                    exercise.setHealth(1);
+                break;
+                case "1 Month Recoverye":
+                    exercise.setHealth(2);
+                break;
+                case "Severe Stroke":
+                    exercise.setHealth(3);
+                break;
+            };
         }
 
     }
