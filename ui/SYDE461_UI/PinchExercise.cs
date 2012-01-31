@@ -307,16 +307,17 @@ namespace SYDE461_UI
 
             blobsyellow = (Blob[])findBlobs(greenbmap);
             blobsred = (Blob[])findBlobs(redbmap);
-            int maxBlob = 0;
+            int maxBlobgreen = 0;
+            int maxBlobred = 0;
 
 
             foreach (Blob blob in blobsyellow)
             {
-                if (blob.Area >= 100)
+                if (blob.Area >= 200)
                 {
-                    if (blob.Area > maxBlob)
+                    if (blob.Area > maxBlobgreen)
                     {
-                        maxBlob = blob.Area;
+                        maxBlobgreen = blob.Area;
                         this.testBall.yellowx = (double)(blob.Rectangle.X + blob.Rectangle.Width / 2);
                         this.testBall.yellowy = (double)(blob.Rectangle.Y + blob.Rectangle.Height / 2);
 
@@ -324,22 +325,22 @@ namespace SYDE461_UI
                 }
 
             }
-            //MessageBox.Show("Biggest Green blob" + maxBlob);
-            maxBlob = 0;
+            MessageBox.Show("Biggest Green blob" + maxBlobgreen);
+            
             foreach (Blob blob in blobsred)
             {
-                if (blob.Area >= 100)
+                if (blob.Area >= 200)
                 {
-                    if (blob.Area > maxBlob)
+                    if (blob.Area > maxBlobred)
                     {
-                        maxBlob = blob.Area;
+                        maxBlobred = blob.Area;
                         this.testBall.redx = (double)(blob.Rectangle.X + blob.Rectangle.Width / 2);
                         this.testBall.redy = (double)(blob.Rectangle.Y + blob.Rectangle.Height / 2);
                     }
                 }
 
             }
-            //MessageBox.Show("Biggest red blob" + maxBlob);
+            MessageBox.Show("Biggest red blob" + maxBlobred);
         }
 
 
@@ -417,7 +418,7 @@ namespace SYDE461_UI
             redfilter.Blue = new IntRange(0, 20);
             greenfilter.Red = new IntRange(0, 50);
             greenfilter.Green = new IntRange(50, 255);
-            greenfilter.Blue = new IntRange(0, 50);
+            greenfilter.Blue = new IntRange(0, 70);
             testBall = new Ball(ballBack, 1600.00);
         }
 

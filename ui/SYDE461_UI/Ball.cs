@@ -35,6 +35,7 @@ namespace SYDE461_UI
         private int ballsize;
         public Bitmap scene = null;
         private System.Drawing.Pen bluePen = new System.Drawing.Pen(System.Drawing.Color.Blue, 8);
+        private System.Drawing.Pen redPen = new System.Drawing.Pen(System.Drawing.Color.Red, 5);
 
         public Ball(Bitmap background,double area)
         {
@@ -101,6 +102,8 @@ namespace SYDE461_UI
 
              fingerdistance = Math.Sqrt(Math.Pow(Math.Abs(redx - yellowx), 2) + Math.Pow(Math.Abs(redy - yellowy), 2));
 
+             //System.Drawing.Rectangle blobcenters = new System.Drawing.Rectangle((int)yellowx, (int)yellowy, (int)redx, (int)redy);
+
              //if (originalFingerDist <= 10)
              //{
              //    originalFingerDist = fingerdistance;
@@ -139,6 +142,7 @@ namespace SYDE461_UI
              //g.Clear(System.Drawing.Color.Black);
              //g.DrawImage(scene, theBall, 0, 0, scene.Width, scene.Height, GraphicsUnit.Pixel);
              g.DrawEllipse(bluePen, posx, posy, (int)width, (int)height);
+             //g.DrawRectangle(redPen, (int)redx, (int)redy, (int)(redx - yellowx), (int)(redy - yellowy));
              
          }
 
