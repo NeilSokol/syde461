@@ -30,9 +30,12 @@ namespace SYDE461_UI
         public double originalFingerDist = 0;
         private double max_width = 1;
         private double max_height = 1;
-        private double min_width = 7;
-        private double min_height = 7;
+        private double min_width = 25;
+        private double min_height = 25;
+        private double balldistance = 1;
+        private double oldballdistance = 1;
         private int ballsize;
+        public int health = 0;
         public Bitmap scene = null;
         private System.Drawing.Pen bluePen = new System.Drawing.Pen(System.Drawing.Color.Blue, 8);
         private System.Drawing.Pen redPen = new System.Drawing.Pen(System.Drawing.Color.Red, 5);
@@ -45,7 +48,7 @@ namespace SYDE461_UI
             ballsize = (int) Math.Min(scene.Height, scene.Width);
             posx = (int) (scene.Width / 4);
             posy = (int) (scene.Height / 4);
-            max_width = max_height = 22.5676;//Math.Sqrt(ballArea / (2 * 3.1515926));
+            max_width = max_height = 45;//Math.Sqrt(ballArea / (2 * 3.1515926));
 
             theBall = new Ellipse();
         }
@@ -99,8 +102,25 @@ namespace SYDE461_UI
 
              System.Drawing.Rectangle rec = new System.Drawing.Rectangle(0, 0, newbackground.Width - 1, newbackground.Height - 1);
              scene = newbackground.Clone(rec, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
+             oldballdistance = balldistance;
+             balldistance = fingerdistance = Math.Sqrt(Math.Pow(Math.Abs(redx - yellowx), 2) + Math.Pow(Math.Abs(redy - yellowy), 2));
 
-             fingerdistance = Math.Sqrt(Math.Pow(Math.Abs(redx - yellowx), 2) + Math.Pow(Math.Abs(redy - yellowy), 2));
+             balldistance = fingerdistance * this.calculateHealthModifier(this.health);
+             if (fingerdistance > max_height || fingerdistance == 0 || balldistance > max_height)
+             {
+                 balldistance = max_height;
+             }
+
+             else if (fingerdistance < min_height || balldistance < min_height)
+             {
+                 balldistance = min_height;
+             }
+
+             else 
+             {
+                // balldistance -= (oldballdistance-balldistance) * this.calculateHealthModifier(this.health);
+
+             }
 
              //System.Drawing.Rectangle blobcenters = new System.Drawing.Rectangle((int)yellowx, (int)yellowy, (int)redx, (int)redy);
 
@@ -132,7 +152,7 @@ namespace SYDE461_UI
 
              //else
              //{
-             height = Math.Max((int)fingerdistance, 1);
+             height = Math.Max((int)balldistance, 1);
              //}
              width = (ballArea / (Math.PI * (0.25 * height)));
              //g = Graphics.FromImage(scene);
@@ -163,6 +183,11 @@ namespace SYDE461_UI
                      break;
              };
              return 1;
+         }
+
+         public void resetBall()
+         {
+             UpdateBall(max_height / 2);
          }
 
 

@@ -173,3 +173,4 @@ C:\Users\UseIt\Desktop\Ang_Lindsey_Sokol\syde461\ui\SYDE461_UI\obj\x86\Debug\SYD
 C:\Users\UseIt\Desktop\Ang_Lindsey_Sokol\syde461\ui\SYDE461_UI\obj\x86\Debug\SYDE461_UI.WelcomeScreen.resources
 C:\Users\UseIt\Desktop\Ang_Lindsey_Sokol\syde461\ui\SYDE461_UI\obj\x86\Debug\GenerateResource.read.1.tlog
 C:\Users\UseIt\Desktop\Ang_Lindsey_Sokol\syde461\ui\SYDE461_UI\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\Neil\Documents\Visual Studio 2010\Projects\syde461\ui\SYDE461_UI\bin\Debug\SYDE461_UI.exe.config

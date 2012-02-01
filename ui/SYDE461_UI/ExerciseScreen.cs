@@ -43,6 +43,7 @@ namespace SYDE461_UI
             //this.label2.Text = vid.vidLocation;
 
             exercise = new PinchExercise(this);
+            this.comboBoxHealth.SelectedItem = "No Stroke";
             exercise.start();
             //add analysis stuff
         }

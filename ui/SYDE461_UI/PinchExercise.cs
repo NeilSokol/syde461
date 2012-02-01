@@ -211,6 +211,11 @@ namespace SYDE461_UI
 
             //MessageBox.Show(testBall.fingerdistance.ToString());
             testBall.UpdateBall(fingerdistance, bmap2);
+
+            //sloppy, fix later
+            testBall.health = patientHealth;
+
+
             //testBall.UpdateBall(fingerdistance);
 
             try
@@ -325,7 +330,7 @@ namespace SYDE461_UI
                 }
 
             }
-            MessageBox.Show("Biggest Green blob" + maxBlobgreen);
+          //  MessageBox.Show("Biggest Green blob" + maxBlobgreen);
             
             foreach (Blob blob in blobsred)
             {
@@ -340,7 +345,7 @@ namespace SYDE461_UI
                 }
 
             }
-            MessageBox.Show("Biggest red blob" + maxBlobred);
+            //MessageBox.Show("Biggest red blob" + maxBlobred);
         }
 
 
@@ -420,6 +425,7 @@ namespace SYDE461_UI
             greenfilter.Green = new IntRange(50, 255);
             greenfilter.Blue = new IntRange(0, 70);
             testBall = new Ball(ballBack, 1600.00);
+            testBall.resetBall();
         }
 
         public void end()
