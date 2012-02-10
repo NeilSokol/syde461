@@ -26,6 +26,7 @@ namespace SYDE461_UI
     public partial class ExerciseScreen : Form
     {
         String user;
+
         
         public ExerciseScreen(String username)
         {
@@ -38,7 +39,7 @@ namespace SYDE461_UI
 
             InstructionVideo vid = new InstructionVideo("Pinch.wmv");
             vid.ShowDialog();
-            this.label2.Text = vid.vidLocation;
+           
         }
 
         

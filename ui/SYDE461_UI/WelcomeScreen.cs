@@ -16,6 +16,11 @@ namespace SYDE461_UI
         UserInfo user = new UserInfo();
         String username;
 
+        ////ExerciseSession stuff
+        //ExerciseSession userSession;
+        //
+
+
         //initialization of screen
         //passes in user info from login screen
         public WelcomeScreen(UserInfo loginInfo)

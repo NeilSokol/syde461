@@ -24,6 +24,11 @@ namespace SYDE461_UI
            // Application.Run(logscreen);
            // ExerciseScreen logscreen = new ExerciseScreen();
             //InstructionVideo logscreen = new InstructionVideo();
+
+            UserInfo example = new UserInfo("example", "");
+            ExerciseSession session = new ExerciseSession(example, ExerciseSession.exerciseType.pinch, 5);
+            session.addSessiontoHistory();
+            
             Application.Run(logscreen);
 
         }
