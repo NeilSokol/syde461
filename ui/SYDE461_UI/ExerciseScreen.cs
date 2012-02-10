@@ -26,7 +26,8 @@ namespace SYDE461_UI
     public partial class ExerciseScreen : Form
     {
         String user;
-
+        PinchExercise exercise;
+        
         
         public ExerciseScreen(String username)
         {
@@ -38,15 +39,39 @@ namespace SYDE461_UI
         {
 
             InstructionVideo vid = new InstructionVideo("Pinch.wmv");
-            vid.ShowDialog();
-           
+            //vid.ShowDialog();
+            //this.label2.Text = vid.vidLocation;
+
+            exercise = new PinchExercise(this);
+            this.comboBoxHealth.SelectedItem = "No Stroke";
+            exercise.start();
+            //add analysis stuff
         }
 
         
 
         private void ExerciseScreen_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
+            exercise.end();
+        }
+
+        private void comboBoxHealth_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch(comboBoxHealth.SelectedItem.ToString())
+            {
+                case "No Stroke":
+                    exercise.setHealth(0);
+                break;
+                case "6 Month Recovery":
+                    exercise.setHealth(1);
+                break;
+                case "1 Month Recoverye":
+                    exercise.setHealth(2);
+                break;
+                case "Severe Stroke":
+                    exercise.setHealth(3);
+                break;
+            };
         }
 
     }
