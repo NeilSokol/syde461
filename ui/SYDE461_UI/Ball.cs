@@ -49,11 +49,11 @@ namespace SYDE461_UI
             posx = (int) (scene.Width / 4);
             posy = (int) (scene.Height / 4);
             max_width = max_height = 45;//Math.Sqrt(ballArea / (2 * 3.1515926));
-
+            
             theBall = new Ellipse();
         }
 
-
+        // ball without background, this needs to get updated
          public void UpdateBall(double newheight)
         {
             
@@ -96,16 +96,45 @@ namespace SYDE461_UI
             g.DrawEllipse(bluePen, posx, posy, (int)width, (int)height);
         }
 
+         private double absolute_val(double value)
+         {
+             if (value <= 0)
+                 value = -value;
+             return value;
+         }
+         private double squared(double value)
+         {
+             double square = value * value;
+             return square;
+         }
+        private double min (double x1, double x2)
+        {
+            double pos;
+            if (x1 < x2)
+            {
+                pos = x1;
+            }
+            else
+            {
+                pos = x2;
+            }
+            return pos;
+        }
+
+
         //Trying to draw ellipse on a different background
          public void UpdateBall(double newheight, Bitmap newbackground)
          {
 
              System.Drawing.Rectangle rec = new System.Drawing.Rectangle(0, 0, newbackground.Width - 1, newbackground.Height - 1);
              scene = newbackground.Clone(rec, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
+
              oldballdistance = balldistance;
-             balldistance = fingerdistance = Math.Sqrt(Math.Pow(Math.Abs(redx - yellowx), 2) + Math.Pow(Math.Abs(redy - yellowy), 2));
+             balldistance = fingerdistance = Math.Sqrt(squared(absolute_val(redx - yellowx)) + squared(absolute_val(redy - yellowy)));
 
              balldistance = fingerdistance * this.calculateHealthModifier(this.health);
+
+             // fingerdistance == 0 seems like a very unsatisfactory solution, we should probably just set the original finger distance to something else?
              if (fingerdistance > max_height || fingerdistance == 0 || balldistance > max_height)
              {
                  balldistance = max_height;
@@ -122,47 +151,19 @@ namespace SYDE461_UI
 
              }
 
-             //System.Drawing.Rectangle blobcenters = new System.Drawing.Rectangle((int)yellowx, (int)yellowy, (int)redx, (int)redy);
-
-             //if (originalFingerDist <= 10)
-             //{
-             //    originalFingerDist = fingerdistance;
-             //    MessageBox.Show( "Baseline distance =" + originalFingerDist);
-             //}
-
-
-             //if (fingerdistance < 320)
-             //{
-             //    fingerdistance++;
-             //}
-             //else
-             //{
-             //    fingerdistance = 1;
-             //}
-
-             //if ((fingerdistance / 20) > max_height)
-             //{
-             //    height = max_height;
-             //}
-
-             //else if ((fingerdistance / 20) < min_height)
-             //{
-             //    height = min_height;
-             //}
-
-             //else
-             //{
              height = Math.Max((int)balldistance, 1);
-             //}
+
              width = (ballArea / (Math.PI * (0.25 * height)));
-             //g = Graphics.FromImage(scene);
-             //g.Clear(System.Drawing.Color.Black);
-             //g.DrawEllipse(bluePen, posx, posy, (int)width, (int)height);
+
+             if (fingerdistance != 0)
+             {
+                 posx = (int)(min(redx, yellowx) - width / 2);
+                 posy = (int)min(redy, yellowy);
+             }
+
              g = Graphics.FromImage(scene);
-             //g.Clear(System.Drawing.Color.Black);
-             //g.DrawImage(scene, theBall, 0, 0, scene.Width, scene.Height, GraphicsUnit.Pixel);
              g.DrawEllipse(bluePen, posx, posy, (int)width, (int)height);
-             //g.DrawRectangle(redPen, (int)redx, (int)redy, (int)(redx - yellowx), (int)(redy - yellowy));
+             g.DrawRectangle(redPen, posx, posy, (int)absolute_val(redx - yellowx), (int)absolute_val(redy - yellowy));
              
          }
 

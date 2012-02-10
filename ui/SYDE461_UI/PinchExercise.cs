@@ -325,7 +325,8 @@ namespace SYDE461_UI
                         maxBlobgreen = blob.Area;
                         this.testBall.yellowx = (double)(blob.Rectangle.X + blob.Rectangle.Width / 2);
                         this.testBall.yellowy = (double)(blob.Rectangle.Y + blob.Rectangle.Height / 2);
-
+                        //this.testBall.yellowx = blob.CenterOfGravity.X;
+                        //this.testBall.yellowy = blob.CenterOfGravity.Y;
                     }
                 }
 
@@ -341,6 +342,8 @@ namespace SYDE461_UI
                         maxBlobred = blob.Area;
                         this.testBall.redx = (double)(blob.Rectangle.X + blob.Rectangle.Width / 2);
                         this.testBall.redy = (double)(blob.Rectangle.Y + blob.Rectangle.Height / 2);
+                        //this.testBall.redx = blob.CenterOfGravity.X;
+                        //this.testBall.redy = blob.CenterOfGravity.Y;
                     }
                 }
 
