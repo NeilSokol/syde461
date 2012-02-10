@@ -36,6 +36,8 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.comboBoxHealth = new System.Windows.Forms.ComboBox();
             this.labelStroke = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.correctedDistanceValue = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ballBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -114,11 +116,30 @@
             this.labelStroke.TabIndex = 10;
             this.labelStroke.Text = "Stroke Severity";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(268, 337);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(130, 13);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "Corrected Finger Distance";
+            // 
+            // label4
+            // 
+            this.correctedDistanceValue.AutoSize = true;
+            this.correctedDistanceValue.Location = new System.Drawing.Point(268, 363);
+            this.correctedDistanceValue.Name = "correctedDistanceValue";
+            this.correctedDistanceValue.Size = new System.Drawing.Size(0, 13);
+            this.correctedDistanceValue.TabIndex = 12;
+            // 
             // ExerciseScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1233, 431);
+            this.Controls.Add(this.correctedDistanceValue);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.labelStroke);
             this.Controls.Add(this.comboBoxHealth);
             this.Controls.Add(this.pictureBox2);
@@ -151,5 +172,7 @@
         public System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.ComboBox comboBoxHealth;
         private System.Windows.Forms.Label labelStroke;
+        private System.Windows.Forms.Label label3;
+        public System.Windows.Forms.Label correctedDistanceValue;
     }
 }

@@ -208,6 +208,7 @@ namespace SYDE461_UI
             //  fingerdistance = Math.Sqrt(Math.Pow(Math.Abs(red_x - yellow_x), 2) + Math.Pow(Math.Abs(red_y - yellow_y), 2));
             // fingerdistance = red_x;
             output.fingerDistanceValue.Text = testBall.fingerdistance.ToString();
+            output.correctedDistanceValue.Text = testBall.balldistance.ToString();
 
             //MessageBox.Show(testBall.fingerdistance.ToString());
             testBall.UpdateBall(fingerdistance, bmap2);
@@ -427,7 +428,7 @@ namespace SYDE461_UI
             greenfilter.Red = new IntRange(0, 50);
             greenfilter.Green = new IntRange(50, 255);
             greenfilter.Blue = new IntRange(0, 70);
-            testBall = new Ball(ballBack, 1600.00);
+            testBall = new Ball(ballBack, 3000.00);
             testBall.resetBall();
         }
 

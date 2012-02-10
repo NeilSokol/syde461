@@ -30,9 +30,9 @@ namespace SYDE461_UI
         public double originalFingerDist = 0;
         private double max_width = 1;
         private double max_height = 1;
-        private double min_width = 25;
-        private double min_height = 25;
-        private double balldistance = 1;
+        private double min_width = 20;
+        private double min_height = 20;
+        public double balldistance = 1;
         private double oldballdistance = 1;
         private int ballsize;
         public int health = 0;
@@ -48,7 +48,7 @@ namespace SYDE461_UI
             ballsize = (int) Math.Min(scene.Height, scene.Width);
             posx = (int) (scene.Width / 4);
             posy = (int) (scene.Height / 4);
-            max_width = max_height = 45;//Math.Sqrt(ballArea / (2 * 3.1515926));
+            max_width = max_height = 2*Math.Sqrt(ballArea / (Math.PI));
             
             theBall = new Ellipse();
         }
@@ -121,6 +121,19 @@ namespace SYDE461_UI
             return pos;
         }
 
+        private double max(double x1, double x2)
+        {
+            double pos;
+            if (x1 < x2)
+            {
+                pos = x2;
+            }
+            else
+            {
+                pos = x1;
+            }
+            return pos;
+        }
 
         //Trying to draw ellipse on a different background
          public void UpdateBall(double newheight, Bitmap newbackground)
@@ -132,7 +145,7 @@ namespace SYDE461_UI
              oldballdistance = balldistance;
              balldistance = fingerdistance = Math.Sqrt(squared(absolute_val(redx - yellowx)) + squared(absolute_val(redy - yellowy)));
 
-             balldistance = fingerdistance * this.calculateHealthModifier(this.health);
+             balldistance = fingerdistance / this.calculateHealthModifier(this.health);
 
              // fingerdistance == 0 seems like a very unsatisfactory solution, we should probably just set the original finger distance to something else?
              if (fingerdistance > max_height || fingerdistance == 0 || balldistance > max_height)
@@ -155,15 +168,18 @@ namespace SYDE461_UI
 
              width = (ballArea / (Math.PI * (0.25 * height)));
 
+             //For testing
+             //MessageBox.Show("Ball height" + height + "Ball width" + width);
+
              if (fingerdistance != 0)
              {
-                 posx = (int)(min(redx, yellowx) - width / 2);
-                 posy = (int)min(redy, yellowy);
+                 posx = (int)(max(redx, yellowx) - width / 2);
+                 posy = (int)(max(redy, yellowy)-height);
              }
 
              g = Graphics.FromImage(scene);
              g.DrawEllipse(bluePen, posx, posy, (int)width, (int)height);
-             g.DrawRectangle(redPen, posx, posy, (int)absolute_val(redx - yellowx), (int)absolute_val(redy - yellowy));
+             //g.DrawRectangle(redPen, posx, posy, (int)absolute_val(redx - yellowx), (int)absolute_val(redy - yellowy));
              
          }
 
