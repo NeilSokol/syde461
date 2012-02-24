@@ -315,7 +315,8 @@ namespace SYDE461_UI
             blobsred = (Blob[])findBlobs(redbmap);
             int maxBlobgreen = 0;
             int maxBlobred = 0;
-
+            int redblobcount = 0;
+            int greenblobcount = 0;
 
             foreach (Blob blob in blobsyellow)
             {
@@ -324,10 +325,11 @@ namespace SYDE461_UI
                     if (blob.Area > maxBlobgreen)
                     {
                         maxBlobgreen = blob.Area;
-                        this.testBall.yellowx = (double)(blob.Rectangle.X + blob.Rectangle.Width / 2);
-                        this.testBall.yellowy = (double)(blob.Rectangle.Y + blob.Rectangle.Height / 2);
-                        //this.testBall.yellowx = blob.CenterOfGravity.X;
-                        //this.testBall.yellowy = blob.CenterOfGravity.Y;
+                        //this.testBall.yellowx = (double)(blob.Rectangle.X + blob.Rectangle.Width / 2);
+                        //this.testBall.yellowy = (double)(blob.Rectangle.Y + blob.Rectangle.Height / 2);
+                        this.testBall.yellowx = blob.CenterOfGravity.X;
+                        this.testBall.yellowy = blob.CenterOfGravity.Y;
+                        //greenblobcount++;
                     }
                 }
 
@@ -341,15 +343,17 @@ namespace SYDE461_UI
                     if (blob.Area > maxBlobred)
                     {
                         maxBlobred = blob.Area;
-                        this.testBall.redx = (double)(blob.Rectangle.X + blob.Rectangle.Width / 2);
-                        this.testBall.redy = (double)(blob.Rectangle.Y + blob.Rectangle.Height / 2);
-                        //this.testBall.redx = blob.CenterOfGravity.X;
-                        //this.testBall.redy = blob.CenterOfGravity.Y;
+                        //this.testBall.redx = (double)(blob.Rectangle.X + blob.Rectangle.Width / 2);
+                        //this.testBall.redy = (double)(blob.Rectangle.Y + blob.Rectangle.Height / 2);
+                        this.testBall.redx = blob.CenterOfGravity.X;
+                        this.testBall.redy = blob.CenterOfGravity.Y;
+                        //redblobcount++;
                     }
                 }
 
             }
             //MessageBox.Show("Biggest red blob" + maxBlobred);
+            //MessageBox.Show("Green blobs" + greenblobcount + "Red blobs" +redblobcount);
         }
 
 
@@ -412,13 +416,23 @@ namespace SYDE461_UI
             blobfilter.MinWidth = 2;
             blobfilter.MinHeight = 2;
             initbgw();
-            //Set up color parameters for red and yellow color filters
-            //yellowfilter.Red = new IntRange(100, 255);
-            //yellowfilter.Green = new IntRange(100, 255);
-            //yellowfilter.Blue = new IntRange(0, 10);
-            //redfilter.Red = new IntRange(30, 255);
-            //redfilter.Green = new IntRange(0, 20);
-            //redfilter.Blue = new IntRange(0, 20); 
+            ////Set up color parameters for red and yellow color filters
+            ////yellowfilter.Red = new IntRange(100, 255);
+            ////yellowfilter.Green = new IntRange(100, 255);
+            ////yellowfilter.Blue = new IntRange(0, 10);
+            ////redfilter.Red = new IntRange(30, 255);
+            ////redfilter.Green = new IntRange(0, 20);
+            ////redfilter.Blue = new IntRange(0, 20); 
+            //yellowfilter.Red = new IntRange(0, 45);
+            //yellowfilter.Green = new IntRange(50, 255);
+            //yellowfilter.Blue = new IntRange(0, 45);
+            //redfilter.Red = new IntRange(153, 255);
+            //redfilter.Green = new IntRange(0, 102);
+            //redfilter.Blue = new IntRange(0, 102);
+            //greenfilter.Red = new IntRange(0, 153);
+            //greenfilter.Green = new IntRange(153, 255);
+            //greenfilter.Blue = new IntRange(0, 153);
+            testBall = new Ball(ballBack, 3000.00);
             yellowfilter.Red = new IntRange(0, 45);
             yellowfilter.Green = new IntRange(50, 255);
             yellowfilter.Blue = new IntRange(0, 45);
@@ -428,8 +442,7 @@ namespace SYDE461_UI
             greenfilter.Red = new IntRange(0, 50);
             greenfilter.Green = new IntRange(50, 255);
             greenfilter.Blue = new IntRange(0, 70);
-            testBall = new Ball(ballBack, 3000.00);
-            testBall.resetBall();
+            //testBall.resetBall();
         }
 
         public void end()
