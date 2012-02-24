@@ -156,6 +156,34 @@ namespace SYDE461_UI
         }
 
 
+        ////add session to user history, with only username and password
+        //public void addSessiontoHistory()
+        //{
+        //    String filename = this.user.getUsername();
+
+        //    // add password check?
+        //    try
+        //    {
+        //        StreamWriter writestream = new StreamWriter(filename + ".txt", true);
+        //        writestream.WriteLine(this.state);
+        //        writestream.WriteLine(this.type);
+        //        writestream.WriteLine(this.attempts);
+        //        writestream.WriteLine(this.reps);
+        //        writestream.WriteLine(this.completedReps);
+        //        writestream.WriteLine(this.addedDate);
+        //        writestream.WriteLine(this.lastModified);
+        //        writestream.WriteLine(this.startTime);
+        //        writestream.WriteLine(this.endTime);
+        //        writestream.Close();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        StreamWriter writestream = new StreamWriter("error.txt");
+        //        //ex.ToString;
+        //        //MessageBox.Show(ex.ToString());
+        //    }
+        //}
+
         //add session to user history, with only username and password
         public void addSessiontoHistory()
         {
@@ -164,7 +192,11 @@ namespace SYDE461_UI
             // add password check?
             try
             {
-                StreamWriter writestream = new StreamWriter(filename + ".txt", true);
+                //FileStream fs = new FileStream(filename + ".txt", FileMode.OpenOrCreate);
+                
+                // In order to make this work have to put text into a buffer
+                
+                StreamWriter writestream = new StreamWriter(filename + ".txt", true); 
                 writestream.WriteLine(this.state);
                 writestream.WriteLine(this.type);
                 writestream.WriteLine(this.attempts);
@@ -179,7 +211,7 @@ namespace SYDE461_UI
             catch (Exception ex)
             {
                 StreamWriter writestream = new StreamWriter("error.txt");
-                //ex.ToString;
+                writestream.WriteLine(ex.ToString());
                 //MessageBox.Show(ex.ToString());
             }
         }
@@ -190,30 +222,31 @@ namespace SYDE461_UI
 
         }
 
-        //void readSession()
-        //{
-        //    String filename = this.user.getUsername();
+        void readSession()
+        {
+            String filename = this.user.getUsername();
+            StreamReader readstream = new StreamReader(filename + ".txt", true);
 
-        //    // add password check?
-        //    try
-        //    {
-        //        StreamReader readstream = new StreamReader(filename + ".txt", true);
-        //        this.state = readstream.ReadLine();
-        //        readstream.WriteLine(this.type);
-        //        readstream.WriteLine(this.attempts);
-        //        readstream.WriteLine(this.reps);
-        //        readstream.WriteLine(this.completedReps);
-        //        readstream.WriteLine(this.addedDate);
-        //        readstream.WriteLine(this.lastModified);
-        //        readstream.WriteLine(this.startTime);
-        //        readstream.WriteLine(this.endTime);
-        //        readstream.Close();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.ToString());
-        //    }
-        //}
+            // add password check?
+            try
+            {
+                
+                this.state =  (exerciseState) Int32.Parse(readstream.ReadLine());
+                this.type = (exerciseType)Int32.Parse(readstream.ReadLine());
+                this.attempts = Int32.Parse(readstream.ReadLine());
+                this.reps = Int32.Parse(readstream.ReadLine());
+                this.completedReps = Int32.Parse(readstream.ReadLine());
+                this.addedDate = DateTime.Parse(readstream.ReadLine());
+                this.lastModified = DateTime.Parse(readstream.ReadLine());
+                this.startTime = DateTime.Parse(readstream.ReadLine());
+                this.endTime = DateTime.Parse(readstream.ReadLine());
+                readstream.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
 
         //get from user history, with username and password
         //void getSessionfromHistory(UserHistoryData history)
