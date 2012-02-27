@@ -1,8 +1,11 @@
-﻿using System;
+﻿// Should add check to health modifier here or elsewhere?
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Windows.Forms;
 
 namespace SYDE461_UI
 {
@@ -11,9 +14,11 @@ namespace SYDE461_UI
         //Might make sense to move these enums to different loc
         public enum exerciseType { pinch, squeeze, pickup };
         public enum exerciseState { incomplete, cancelled, complete };
-        
-        
+
+
         UserInfo user;
+        int sessionID;
+        int maxID;
         exerciseState state;
         exerciseType type;
         int attempts;
@@ -31,17 +36,24 @@ namespace SYDE461_UI
 
         //This constructor is for when a health care professional adds an exercise to the patient's
         //profile, rep number not defined
+
+        //Default Constructor
+        public ExerciseSession()
+        {
+
+        }
+        
         public ExerciseSession(UserInfo user, exerciseType type)
         {
 
-           //for (UserHistoryData
+            //for (UserHistoryData
             this.user = user;
             this.type = type;
-            this.state = exerciseState.incomplete; 
+            this.state = exerciseState.incomplete;
             this.addedDate = DateTime.Now;
             this.attempts = 0;
             //default number of reps if not indicated
-            this.reps = 10;
+            this.reps = 5;
             this.completedReps = 0;
 
         }
@@ -77,15 +89,18 @@ namespace SYDE461_UI
         }
 
         //Copy ExerciseSession, used by health care professional, probably to repeat an exercise
-        void copyExerciseSession(ExerciseSession old)
+        public ExerciseSession copyExerciseSession()
         {
-            this.user = old.user;
-            this.type = old.type;
-            this.state = old.state;
-            this.attempts = 0;
-            this.addedDate = DateTime.Now;
-            this.reps = old.reps;
+            ExerciseSession copy = new ExerciseSession(); 
+            copy.user = this.user;
+            copy.type = this.type;
+            copy.state = exerciseState.incomplete;
+            copy.attempts = 0;
+            copy.addedDate = DateTime.Now;
+            copy.reps = this.reps;
             this.completedReps = 0;
+
+            return copy;
         }
 
         //
@@ -120,10 +135,54 @@ namespace SYDE461_UI
         // check if user has completed exercise
         bool checkComplete()
         {
-            if (this.reps == this.completedReps);
+            if (this.reps == this.completedReps) ;
 
             return true;
         }
+
+        // Open a write stream
+        public StreamWriter openWriteStream(String filename)
+        {
+            try
+            {
+                StreamWriter writestream = new StreamWriter(filename + ".txt", true);
+                return writestream;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                return null;
+            }
+        }
+
+
+        ////add session to user history, with only username and password
+        //public void addSessiontoHistory()
+        //{
+        //    String filename = this.user.getUsername();
+
+        //    // add password check?
+        //    try
+        //    {
+        //        StreamWriter writestream = new StreamWriter(filename + ".txt", true);
+        //        writestream.WriteLine(this.state);
+        //        writestream.WriteLine(this.type);
+        //        writestream.WriteLine(this.attempts);
+        //        writestream.WriteLine(this.reps);
+        //        writestream.WriteLine(this.completedReps);
+        //        writestream.WriteLine(this.addedDate);
+        //        writestream.WriteLine(this.lastModified);
+        //        writestream.WriteLine(this.startTime);
+        //        writestream.WriteLine(this.endTime);
+        //        writestream.Close();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        StreamWriter writestream = new StreamWriter("error.txt");
+        //        //ex.ToString;
+        //        //MessageBox.Show(ex.ToString());
+        //    }
+        //}
 
         //add session to user history, with only username and password
         public void addSessiontoHistory()
@@ -133,7 +192,11 @@ namespace SYDE461_UI
             // add password check?
             try
             {
-                StreamWriter writestream = new StreamWriter(filename + ".txt", true);
+                //FileStream fs = new FileStream(filename + ".txt", FileMode.OpenOrCreate);
+                
+                // In order to make this work have to put text into a buffer
+                
+                StreamWriter writestream = new StreamWriter(filename + ".txt", true); 
                 writestream.WriteLine(this.state);
                 writestream.WriteLine(this.type);
                 writestream.WriteLine(this.attempts);
@@ -143,10 +206,12 @@ namespace SYDE461_UI
                 writestream.WriteLine(this.lastModified);
                 writestream.WriteLine(this.startTime);
                 writestream.WriteLine(this.endTime);
-                writestream.Close(); 
+                writestream.Close();
             }
             catch (Exception ex)
             {
+                StreamWriter writestream = new StreamWriter("error.txt");
+                writestream.WriteLine(ex.ToString());
                 //MessageBox.Show(ex.ToString());
             }
         }
@@ -157,13 +222,39 @@ namespace SYDE461_UI
 
         }
 
+        void readSession()
+        {
+            String filename = this.user.getUsername();
+            StreamReader readstream = new StreamReader(filename + ".txt", true);
+
+            // add password check?
+            try
+            {
+                
+                this.state =  (exerciseState) Int32.Parse(readstream.ReadLine());
+                this.type = (exerciseType)Int32.Parse(readstream.ReadLine());
+                this.attempts = Int32.Parse(readstream.ReadLine());
+                this.reps = Int32.Parse(readstream.ReadLine());
+                this.completedReps = Int32.Parse(readstream.ReadLine());
+                this.addedDate = DateTime.Parse(readstream.ReadLine());
+                this.lastModified = DateTime.Parse(readstream.ReadLine());
+                this.startTime = DateTime.Parse(readstream.ReadLine());
+                this.endTime = DateTime.Parse(readstream.ReadLine());
+                readstream.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
         //get from user history, with username and password
         //void getSessionfromHistory(UserHistoryData history)
         //{
         //    String filename = this.user.getUsername();
         //    StreamReader readstream = new StreamReader(filename + ".txt", true);
         //}
-        
+
         ////get from user history, with user history object
         //void getSessionfromHistory(UserHistoryData history)
         //{
