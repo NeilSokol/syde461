@@ -531,7 +531,15 @@ namespace SYDE461_UI
         public void end()
         {
             nui.Uninitialize();
-            MessageBox.Show("exercise complete");
+
+            if (output.inprog.checkComplete() == true)
+            {
+                MessageBox.Show("exercise complete");
+            }
+            else
+            {
+                MessageBox.Show("exercise incomplete");
+            }
             // add more stuff here
         }
     }
