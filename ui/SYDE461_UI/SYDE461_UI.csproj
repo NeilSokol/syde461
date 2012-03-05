@@ -68,7 +68,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Ball.cs" />
+    <Compile Include="ExerciseScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExerciseScreen.designer.cs">
+      <DependentUpon>ExerciseScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="ExerciseSession.cs" />
+    <Compile Include="Debug.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Debug.Designer.cs">
+      <DependentUpon>Debug.cs</DependentUpon>
+    </Compile>
     <Compile Include="PinchExercise.cs" />
     <Compile Include="ExerciseStore.cs" />
     <Compile Include="InstructionVideo.cs">
@@ -88,12 +100,6 @@
     </Compile>
     <Compile Include="UserHistoryScreen.Designer.cs">
       <DependentUpon>UserHistoryScreen.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ExerciseScreen.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ExerciseScreen.Designer.cs">
-      <DependentUpon>ExerciseScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="ShutdownScreen.cs">
       <SubType>Form</SubType>

@@ -1,50 +1,27 @@
-﻿/*TO DO TOMORROW! PUT BOTH RED AND YELLOW PROCESSIGN THREADS INTO ONE, SHOULD PREVENT ISSUE WITH CURRENT UNKNOWN INVOKE EXCEPTION*/
-
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using System.Media;
-using Microsoft.Research.Kinect.Nui;
-using Microsoft.Research.Kinect.Audio;
-using System.Threading;
-using AForge.Imaging;
-using AForge.Vision;
-using AForge;
-using OpenTK.Graphics;
-using OpenTK.Graphics.OpenGL;
 
 namespace SYDE461_UI
 {
-    public partial class ExerciseScreen : Form
+    public partial class Debug : Form
     {
-        public String user;
+public String user;
         public PinchExercise exercise;
-        public ExerciseSession inprog;
-
-        public ExerciseScreen(String username)
-        {
-            user = username;
-            inprog = new ExerciseSession();
-            InitializeComponent();
-        }
         
         
-        public ExerciseScreen(String username, ExerciseSession current)
+        public Debug(String username)
         {
             user = username;
-            inprog = current;
             InitializeComponent();
         }
 
-        public void ExerciseScreen_Load(object sender, EventArgs e)
+        public void Debug_Load(object sender, EventArgs e)
         {
 
             InstructionVideo vid = new InstructionVideo("Pinch.wmv");
@@ -57,11 +34,12 @@ namespace SYDE461_UI
             //add analysis stuff
         }
 
-        public void ExerciseScreen_FormClosing(object sender, FormClosingEventArgs e)
+        
+
+        public void Debug_FormClosing(object sender, FormClosingEventArgs e)
         {
             exercise.end();
         }
-
 
         public void comboBoxHealth_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -83,5 +61,4 @@ namespace SYDE461_UI
         }
 
     }
-   
 }

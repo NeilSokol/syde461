@@ -37,6 +37,7 @@ namespace SYDE461_UI
                 //axInstruction.URL = "C:\\Users\\UseIt\\Desktop\\Ang Lindsey Sokol\\syde461\\ui\\SYDE461_UI\\instructions.wmv";
                 axInstruction.URL = vidLocation;
                 axInstruction.Ctlcontrols.play();
+                axInstruction.Ctlcontrols.pause();
             }
             catch (Exception ex)
             {
@@ -53,6 +54,11 @@ namespace SYDE461_UI
                 System.Threading.Thread.Sleep(1000);
                 this.Close();
             }
+        }
+
+        public void InstructionVideo_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            axInstruction.close();
         }
     }
 }

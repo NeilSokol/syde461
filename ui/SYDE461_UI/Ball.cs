@@ -29,9 +29,9 @@ namespace SYDE461_UI
         public double fingerdistance = 1;
         public double originalFingerDist = 0;
         private double max_width = 1;
-        private double max_height = 1;
+        public double max_height = 1;
         private double min_width = 20;
-        private double min_height = 20;
+        public double min_height = 20;
         public double balldistance = 1;
         private double oldballdistance = 1;
         private int ballsize;
