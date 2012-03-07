@@ -82,6 +82,11 @@ namespace SYDE461_UI
             };
         }
 
+        private void exit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
     }
    
 }

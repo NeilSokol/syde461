@@ -51,6 +51,7 @@
             this.Controls.Add(this.axInstruction);
             this.Name = "InstructionVideo";
             this.Text = "InstructionVideo";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.InstructionVideo_FormClosing);
             this.Load += new System.EventHandler(this.InstructionVideo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.axInstruction)).EndInit();
             this.ResumeLayout(false);

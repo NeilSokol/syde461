@@ -40,6 +40,7 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.exit = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.ballBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -152,11 +153,22 @@
             this.label5.TabIndex = 18;
             this.label5.Text = "0";
             // 
+            // exit
+            // 
+            this.exit.Location = new System.Drawing.Point(227, 313);
+            this.exit.Name = "exit";
+            this.exit.Size = new System.Drawing.Size(167, 37);
+            this.exit.TabIndex = 19;
+            this.exit.Text = "Leave exercise";
+            this.exit.UseVisualStyleBackColor = true;
+            this.exit.Click += new System.EventHandler(this.exit_Click);
+            // 
             // ExerciseScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1326, 547);
+            this.ClientSize = new System.Drawing.Size(432, 411);
+            this.Controls.Add(this.exit);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.pictureBox2);
@@ -197,5 +209,6 @@
         public System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label4;
         public System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button exit;
     }
 }

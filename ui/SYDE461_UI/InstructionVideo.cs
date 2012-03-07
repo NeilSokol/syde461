@@ -37,7 +37,7 @@ namespace SYDE461_UI
                 //axInstruction.URL = "C:\\Users\\UseIt\\Desktop\\Ang Lindsey Sokol\\syde461\\ui\\SYDE461_UI\\instructions.wmv";
                 axInstruction.URL = vidLocation;
                 axInstruction.Ctlcontrols.play();
-                axInstruction.Ctlcontrols.pause();
+               
             }
             catch (Exception ex)
             {
@@ -48,17 +48,19 @@ namespace SYDE461_UI
         private void axInstruction_PlayStateChange(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)
         {
             //wait two seconds when video stops, then close
-
+            //MessageBox.Show(axInstruction.playState.ToString());
             if ((WMPLib.WMPPlayState)e.newState == WMPPlayState.wmppsMediaEnded | (WMPLib.WMPPlayState)e.newState == WMPPlayState.wmppsStopped)
             {
-                System.Threading.Thread.Sleep(1000);
+                System.Threading.Thread.Sleep(0);
                 this.Close();
+
             }
         }
 
         public void InstructionVideo_FormClosing(object sender, FormClosingEventArgs e)
         {
-            axInstruction.close();
+            if (axInstruction.playState == WMPPlayState.wmppsPlaying)
+            { axInstruction.URL = ""; }
         }
     }
 }

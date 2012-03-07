@@ -87,8 +87,8 @@ namespace SYDE461_UI
         SoundPlayer together = new SoundPlayer(@"c:\Windows\Media\chimes.wav");
         SoundPlayer apart = new SoundPlayer(@"c:\Windows\Media\chimes.wav");
 
-        //0 = bring fingers to gether, 1 it push fingers apart
-        int direction = 0; 
+        //0 = bring fingers to gether, 1 it push fingers apart, 2 starting
+        int direction = 2; 
 
 
         //Default constructor, pass caller so that can update picture boxes on exercise screen
@@ -132,9 +132,15 @@ namespace SYDE461_UI
                 output.label5.Text = (output.inprog.getRepCount()).ToString();
                 direction = 0;
                 if (output.inprog.checkComplete() == true)
-                    end();
+                { 
+                    output.Close();
+                }
                 instruction.Text = "Squeeze the ball!";
-
+            }
+            if (direction == 2 && testBall.balldistance == testBall.max_height)
+            {
+                together.Play();
+                direction = 0;
             }
         }
         //Get data
@@ -534,11 +540,11 @@ namespace SYDE461_UI
 
             if (output.inprog.checkComplete() == true)
             {
-                MessageBox.Show("exercise complete");
+                MessageBox.Show("Exercise Complete");
             }
             else
             {
-                MessageBox.Show("exercise incomplete");
+                MessageBox.Show("Exercise Incomplete");
             }
             // add more stuff here
         }
