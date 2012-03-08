@@ -29,6 +29,7 @@ namespace SYDE461_UI
         public PinchExercise exercise;
         public ExerciseSession inprog;
 
+
         public ExerciseScreen(String username)
         {
             user = username;

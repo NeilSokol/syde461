@@ -82,10 +82,13 @@ namespace SYDE461_UI
         //double originalFingerDist;
 
         //sound clips;
-        SoundPlayer goodJob = new SoundPlayer(@"c:\Windows\Media\chimes.wav");
-        SoundPlayer exerciseEnd = new SoundPlayer(@"c:\Windows\Media\chimes.wav");
-        SoundPlayer together = new SoundPlayer(@"c:\Windows\Media\chimes.wav");
-        SoundPlayer apart = new SoundPlayer(@"c:\Windows\Media\chimes.wav");
+        SoundPlayer goodJob = new SoundPlayer("again.wav");
+        SoundPlayer complete = new SoundPlayer("complete.wav");
+        SoundPlayer together = new SoundPlayer("together.wav");
+        SoundPlayer apart = new SoundPlayer("apart.wav");
+        SoundPlayer practice = new SoundPlayer("practice.wav");
+
+        BigMessageBox popup = new BigMessageBox();
 
         //0 = bring fingers to gether, 1 it push fingers apart, 2 starting
         int direction = 2; 
@@ -140,7 +143,7 @@ namespace SYDE461_UI
             }
             if (direction == 2 && testBall.balldistance == testBall.max_height)
             {
-                together.Play();
+                MessageBox.Show(together.SoundLocation);
                 direction = 0;
             }
         }
@@ -541,11 +544,13 @@ namespace SYDE461_UI
 
             if (output.inprog.checkComplete() == true)
             {
-                MessageBox.Show("Exercise Complete");
+                //popup.show("Good work! You completed the exercise.");
+                MessageBox.Show("Good work!");
             }
             else
             {
-                MessageBox.Show("Exercise Incomplete");
+                popup.show("Good work!");
+                MessageBox.Show("Good work!");
             }
             // add more stuff here
         }

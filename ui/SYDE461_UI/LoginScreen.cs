@@ -118,7 +118,7 @@ namespace SYDE461_UI
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                error.show(ex.ToString());
             }
         }
     }
