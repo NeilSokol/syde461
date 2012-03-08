@@ -143,7 +143,8 @@ namespace SYDE461_UI
             }
             if (direction == 2 && testBall.balldistance == testBall.max_height)
             {
-                MessageBox.Show(together.SoundLocation);
+                together.Play();
+                //MessageBox.Show(together.SoundLocation);
                 direction = 0;
             }
         }
@@ -544,15 +545,16 @@ namespace SYDE461_UI
 
             if (output.inprog.checkComplete() == true)
             {
-                //popup.show("Good work! You completed the exercise.");
-                MessageBox.Show("Good work!");
+                popup.show("Good work! You completed the exercise.");
+                //MessageBox.Show("Good work!");
             }
             else
             {
-                popup.show("Good work!");
+                //popup.show("Good work!");
                 MessageBox.Show("Good work!");
             }
             // add more stuff here
         }
+
     }
 }
