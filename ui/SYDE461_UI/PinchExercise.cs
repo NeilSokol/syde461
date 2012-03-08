@@ -130,6 +130,7 @@ namespace SYDE461_UI
                 together.Play();
                 output.inprog.updateRepCount();
                 output.label5.Text = (output.inprog.getRepCount()).ToString();
+                output.label6.Text = (output.inprog.getRepsRequired()).ToString();
                 direction = 0;
                 if (output.inprog.checkComplete() == true)
                 { 
