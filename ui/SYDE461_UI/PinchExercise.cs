@@ -88,7 +88,7 @@ namespace SYDE461_UI
         SoundPlayer apart = new SoundPlayer("apart.wav");
         SoundPlayer practice = new SoundPlayer("practice.wav");
 
-        BigMessageBox popup = new BigMessageBox();
+        
 
         //0 = bring fingers to gether, 1 it push fingers apart, 2 starting
         int direction = 2; 
@@ -133,11 +133,11 @@ namespace SYDE461_UI
                 together.Play();
                 output.inprog.updateRepCount();
                 output.label5.Text = (output.inprog.getRepCount()).ToString();
-                output.label7.Text = (output.inprog.getRepsRequired() - output.inprog.getRepCount()).ToString();
+                output.label7.Text = (output.inprog.getRepsRequired()).ToString();
                 direction = 0;
                 if (output.inprog.checkComplete() == true)
                 { 
-                    output.Close();
+                    this.end();
                 }
                 instruction.Text = "Squeeze the ball!";
             }
@@ -545,15 +545,17 @@ namespace SYDE461_UI
 
             if (output.inprog.checkComplete() == true)
             {
-                //popup.show("Good work! You completed the exercise.");
-                MessageBox.Show("Good work! You completed the exercise.");
-                complete.PlaySync();
+                complete.Play();
+                output.popup.show("Good work! You completed the exercise.");
+                //MessageBox.Show("Good work! You completed the exercise.");
+                
             }
             else
             {
-                //popup.show("Good work!");
-                MessageBox.Show("Good work!");
-                practice.PlaySync();
+                practice.Play();
+                output.popup.show("Good work!");
+                //MessageBox.Show("Good work!");
+                
             }
             // add more stuff here
         }

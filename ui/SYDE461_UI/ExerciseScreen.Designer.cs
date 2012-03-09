@@ -186,7 +186,7 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(31, 33);
             this.label7.TabIndex = 21;
-            this.label7.Text = "0";
+            this.label7.Text = "5";
             // 
             // ExerciseScreen
             // 

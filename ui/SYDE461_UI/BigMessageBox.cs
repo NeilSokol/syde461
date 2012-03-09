@@ -25,7 +25,7 @@ namespace SYDE461_UI
         public void show(String text)
         {
             label1.Text = text;
-            this.Show();
+            this.ShowDialog();
         }
 
         private void button1_Click(object sender, EventArgs e)
