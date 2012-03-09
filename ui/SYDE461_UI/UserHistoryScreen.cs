@@ -22,7 +22,6 @@ namespace SYDE461_UI
             
             //sessionList.ObjectCollection = 
             InitializeComponent();
-            label1.Text = "THis is label 1";
         }
 
         private void sessionList_SelectedIndexChanged(object sender, EventArgs e)

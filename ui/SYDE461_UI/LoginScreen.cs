@@ -12,6 +12,7 @@ using Npgsql;
 
 namespace SYDE461_UI
 {
+    
     // This class is for display the login screen of the UI
     public partial class LoginScreen : Form
     {
@@ -20,6 +21,7 @@ namespace SYDE461_UI
         String password = "";
         private DataSet ds = new DataSet();
         private DataTable dt = new DataTable();
+        BigMessageBox error = new BigMessageBox();
 
         //User Dictionary Storage
         public Dictionary<String, String> storedusers = new Dictionary<string,string>();
@@ -86,7 +88,7 @@ namespace SYDE461_UI
                 {
                     // If the login fails show a screen that will inform the user
                     // Should provide useful information to user
-                    MessageBox.Show("Error! Password is incorrect!");
+                     error.show("Error! Password is incorrect!");
                     // LoginFail failed = new LoginFail();
                 }
             }
@@ -94,7 +96,7 @@ namespace SYDE461_UI
             {
                 // If the login fails show a screen that will inform the user
                 // Should provide useful information to user
-                MessageBox.Show("Error! Invalid Username.");
+                error.show("Error! Invalid user name.");
                // LoginFail failed = new LoginFail();
             } ***/
 
@@ -150,7 +152,7 @@ namespace SYDE461_UI
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                error.show(ex.ToString());
             }
         }
     }

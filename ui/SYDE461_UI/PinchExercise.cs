@@ -33,6 +33,7 @@ namespace SYDE461_UI
         Bitmap yellowbmap;
         Bitmap greenbmap;
         Bitmap greenbmap2;
+        Bitmap bluebmap;
 
         //colour blobs
         Blob[] blobs;
@@ -65,6 +66,7 @@ namespace SYDE461_UI
         AForge.Imaging.Filters.ColorFiltering yellowfilter = new AForge.Imaging.Filters.ColorFiltering();
         AForge.Imaging.Filters.ColorFiltering greenfilter = new AForge.Imaging.Filters.ColorFiltering();
         AForge.Imaging.Filters.ColorFiltering redfilter = new AForge.Imaging.Filters.ColorFiltering();
+        AForge.Imaging.Filters.ColorFiltering bluefilter = new AForge.Imaging.Filters.ColorFiltering();
         AForge.Imaging.Filters.Threshold thresholdfilter = new AForge.Imaging.Filters.Threshold(5);
         AForge.Imaging.Filters.Dilatation morphDilate = new AForge.Imaging.Filters.Dilatation();
         AForge.Imaging.Filters.Mean meanfilter = new AForge.Imaging.Filters.Mean();
@@ -82,10 +84,13 @@ namespace SYDE461_UI
         //double originalFingerDist;
 
         //sound clips;
-        SoundPlayer goodJob = new SoundPlayer(@"c:\Windows\Media\chimes.wav");
-        SoundPlayer exerciseEnd = new SoundPlayer(@"c:\Windows\Media\chimes.wav");
-        SoundPlayer together = new SoundPlayer(@"c:\Windows\Media\chimes.wav");
-        SoundPlayer apart = new SoundPlayer(@"c:\Windows\Media\chimes.wav");
+        SoundPlayer goodJob = new SoundPlayer("again.wav");
+        SoundPlayer complete = new SoundPlayer("complete.wav");
+        SoundPlayer together = new SoundPlayer("together.wav");
+        SoundPlayer apart = new SoundPlayer("apart.wav");
+        SoundPlayer practice = new SoundPlayer("practice.wav");
+
+        
 
         //0 = bring fingers to gether, 1 it push fingers apart, 2 starting
         int direction = 2; 
@@ -130,16 +135,18 @@ namespace SYDE461_UI
                 together.Play();
                 output.inprog.updateRepCount();
                 output.label5.Text = (output.inprog.getRepCount()).ToString();
+                output.label7.Text = (output.inprog.getRepsRequired()).ToString();
                 direction = 0;
                 if (output.inprog.checkComplete() == true)
                 { 
-                    output.Close();
+                    this.end();
                 }
                 instruction.Text = "Squeeze the ball!";
             }
             if (direction == 2 && testBall.balldistance == testBall.max_height)
             {
                 together.Play();
+                //MessageBox.Show(together.SoundLocation);
                 direction = 0;
             }
         }
@@ -214,6 +221,7 @@ namespace SYDE461_UI
             greenbmap = greenfilter.Apply(colorbmap);
             greenbmap.Tag = "Green";
             greenbmap2 = (Bitmap)greenbmap.Clone();
+            bluebmap = bluefilter.Apply(colorbmap);
             colorbmap = extractFilter.Apply(colorbmap);
             //bmap = connectedfilter.Apply(colorbmap);
             // check objects count
@@ -294,6 +302,7 @@ namespace SYDE461_UI
                     output.ballBox.Image = testBall.scene;
                     output.pictureBox1.Image = redbmap2;
                     output.pictureBox2.Image = greenbmap2;
+                    output.pictureBox3.Image = bluebmap;
                     changedir(output.label2);
                     
 
@@ -530,6 +539,10 @@ namespace SYDE461_UI
             greenfilter.Red = new IntRange(0, 50);
             greenfilter.Green = new IntRange(50, 255);
             greenfilter.Blue = new IntRange(0, 70);
+            bluefilter.Red = new IntRange(0, 70);
+            bluefilter.Green = new IntRange(0, 70);
+            bluefilter.Blue = new IntRange(185, 255);
+
             //testBall.resetBall();
         }
 
@@ -540,13 +553,20 @@ namespace SYDE461_UI
 
             if (output.inprog.checkComplete() == true)
             {
-                MessageBox.Show("Exercise Complete");
+                complete.Play();
+                output.popup.show("Good work! You completed the exercise.");
+                //MessageBox.Show("Good work! You completed the exercise.");
+                
             }
             else
             {
-                MessageBox.Show("Exercise Incomplete");
+                practice.Play();
+                output.popup.show("Good work!");
+                //MessageBox.Show("Good work!");
+                
             }
             // add more stuff here
         }
+
     }
 }
