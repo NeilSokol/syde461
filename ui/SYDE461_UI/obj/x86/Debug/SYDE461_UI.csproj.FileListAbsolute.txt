@@ -174,3 +174,14 @@ C:\Users\UseIt\Desktop\Ang_Lindsey_Sokol\syde461\ui\SYDE461_UI\obj\x86\Debug\SYD
 C:\Users\UseIt\Desktop\Ang_Lindsey_Sokol\syde461\ui\SYDE461_UI\obj\x86\Debug\GenerateResource.read.1.tlog
 C:\Users\UseIt\Desktop\Ang_Lindsey_Sokol\syde461\ui\SYDE461_UI\obj\x86\Debug\GenerateResource.write.1.tlog
 C:\Users\Neil\Documents\Visual Studio 2010\Projects\syde461\ui\SYDE461_UI\bin\Debug\SYDE461_UI.exe.config
+C:\Users\UseIt\Desktop\Ang_Lindsey_Sokol\syde461\ui\SYDE461_UI\bin\Debug\Npgsql.dll
+C:\Users\UseIt\Desktop\Ang_Lindsey_Sokol\syde461\ui\SYDE461_UI\bin\Debug\Mono.Security.dll
+C:\Users\UseIt\Desktop\Ang_Lindsey_Sokol\syde461\ui\SYDE461_UI\bin\Debug\Npgsql.pdb
+C:\Users\UseIt\Desktop\Ang_Lindsey_Sokol\syde461\ui\SYDE461_UI\bin\Debug\Npgsql.xml
+C:\Users\UseIt\Desktop\Ang_Lindsey_Sokol\syde461\ui\SYDE461_UI\bin\Debug\de\Npgsql.resources.dll
+C:\Users\UseIt\Desktop\Ang_Lindsey_Sokol\syde461\ui\SYDE461_UI\bin\Debug\es\Npgsql.resources.dll
+C:\Users\UseIt\Desktop\Ang_Lindsey_Sokol\syde461\ui\SYDE461_UI\bin\Debug\fi\Npgsql.resources.dll
+C:\Users\UseIt\Desktop\Ang_Lindsey_Sokol\syde461\ui\SYDE461_UI\bin\Debug\fr\Npgsql.resources.dll
+C:\Users\UseIt\Desktop\Ang_Lindsey_Sokol\syde461\ui\SYDE461_UI\bin\Debug\ja\Npgsql.resources.dll
+C:\Users\UseIt\Desktop\Ang_Lindsey_Sokol\syde461\ui\SYDE461_UI\bin\Debug\zh-CN\Npgsql.resources.dll
+C:\Users\UseIt\Desktop\Ang_Lindsey_Sokol\syde461\ui\SYDE461_UI\obj\x86\Debug\SYDE461_UI.BigMessageBox.resources

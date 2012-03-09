@@ -48,7 +48,7 @@ namespace SYDE461_UI
         private void button2_Click(object sender, EventArgs e)
         {
             //Create user history screen and show to user
-            UserHistoryScreen UserHistory = new UserHistoryScreen(username);
+            UserHistoryScreen UserHistory = new UserHistoryScreen(user);
             UserHistory.ShowDialog();
         }
 

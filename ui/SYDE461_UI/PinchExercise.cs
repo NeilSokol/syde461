@@ -20,9 +20,11 @@ using OpenTK.Graphics.OpenGL;
 
 namespace SYDE461_UI
 {
-    class PinchExercise: ExerciseData
+    public class PinchExercise: ExerciseData
     {
         Runtime nui = Runtime.Kinects[0];
+
+        //images
         Bitmap back;
         Bitmap depth;
         Bitmap colorbmap;
@@ -31,19 +33,27 @@ namespace SYDE461_UI
         Bitmap yellowbmap;
         Bitmap greenbmap;
         Bitmap greenbmap2;
+
+        //colour blobs
         Blob[] blobs;
         Blob[] blobsred;
         Blob[] blobsyellow;
+
+        //position info
         double red_x;
         double red_y;
         double yellow_x;
         double yellow_y;
         double fingerdistance;
+
+        //number of objects
         int objectCount;
         int patientHealth = 0;
         bool gotRed = true;
         bool gotYellow = true;
         Bitmap ballBack = new Bitmap(320, 240);
+
+        //Filters
         AForge.Imaging.Filters.Subtract sub;
         AForge.Imaging.Filters.GrayscaleRMY gray = new AForge.Imaging.Filters.GrayscaleRMY();
         AForge.Imaging.Filters.ThresholdedDifference thresh = new AForge.Imaging.Filters.ThresholdedDifference(20);
@@ -68,7 +78,21 @@ namespace SYDE461_UI
         BackgroundWorker bgw;
         BackgroundWorker bgw_red;
         ExerciseScreen output;
+        Debug output2;
         //double originalFingerDist;
+
+        //sound clips;
+        SoundPlayer goodJob = new SoundPlayer("again.wav");
+        SoundPlayer complete = new SoundPlayer("complete.wav");
+        SoundPlayer together = new SoundPlayer("together.wav");
+        SoundPlayer apart = new SoundPlayer("apart.wav");
+        SoundPlayer practice = new SoundPlayer("practice.wav");
+
+        BigMessageBox popup = new BigMessageBox();
+
+        //0 = bring fingers to gether, 1 it push fingers apart, 2 starting
+        int direction = 2; 
+
 
         //Default constructor, pass caller so that can update picture boxes on exercise screen
         public PinchExercise(ExerciseScreen caller)
@@ -81,7 +105,48 @@ namespace SYDE461_UI
             output = caller;
 
         }
+        
+        public PinchExercise(Debug caller)
+        {
+            exerciseName = "Pinch Exercise";
+            exerciseDescription = "This exercise is...";
+            instructions = "Pinch the ball shown on the screen";
+            //video = new InstructionVideo();
+            video = new InstructionVideo("Pinch.wmv");
+            output2 = caller;
 
+        }
+        
+        
+        
+        public void changedir(Label instruction)
+        {
+            if (direction == 0 && testBall.balldistance == testBall.min_height)
+            {
+                instruction.Text = "Release the ball!";
+                apart.Play();
+                direction = 1;
+            }
+            if (direction == 1 && testBall.balldistance == testBall.max_height)
+            {
+                goodJob.Play();
+                together.Play();
+                output.inprog.updateRepCount();
+                output.label5.Text = (output.inprog.getRepCount()).ToString();
+                output.label6.Text = (output.inprog.getRepsRequired()).ToString();
+                direction = 0;
+                if (output.inprog.checkComplete() == true)
+                { 
+                    output.Close();
+                }
+                instruction.Text = "Squeeze the ball!";
+            }
+            if (direction == 2 && testBall.balldistance == testBall.max_height)
+            {
+                MessageBox.Show(together.SoundLocation);
+                direction = 0;
+            }
+        }
         //Get data
         //Data analysis
         //Output to bit map
@@ -207,8 +272,11 @@ namespace SYDE461_UI
 
             //  fingerdistance = Math.Sqrt(Math.Pow(Math.Abs(red_x - yellow_x), 2) + Math.Pow(Math.Abs(red_y - yellow_y), 2));
             // fingerdistance = red_x;
-            output.fingerDistanceValue.Text = testBall.fingerdistance.ToString();
-            output.correctedDistanceValue.Text = testBall.balldistance.ToString();
+            
+
+            //for debug
+            //output2.fingerDistanceValue.Text = testBall.fingerdistance.ToString();
+            //output2.correctedDistanceValue.Text = testBall.balldistance.ToString();
 
             //MessageBox.Show(testBall.fingerdistance.ToString());
             testBall.UpdateBall(fingerdistance, bmap2);
@@ -221,9 +289,29 @@ namespace SYDE461_UI
 
             try
             {
-                //output.fingerDistanceValue.Text = "this is pinch talking";
-                //output.pictureBox1.Image = yellowbmap;
-                output.pictureBox1.Image = redbmap2;
+
+                if (output != null)
+                {
+                    
+                    output.fingerDistanceValue.Text = testBall.fingerdistance.ToString();
+                    output.correctedDistanceValue.Text = testBall.balldistance.ToString();
+                    output.ballBox.Image = testBall.scene;
+                    output.pictureBox1.Image = redbmap2;
+                    output.pictureBox2.Image = greenbmap2;
+                    changedir(output.label2);
+                    
+
+                }
+                //for debug
+                else
+                {
+                    output2.pictureBox1.Image = redbmap2;
+                    output2.fingerDistanceValue.Text = testBall.fingerdistance.ToString();
+                    output2.correctedDistanceValue.Text = testBall.balldistance.ToString();
+                    output2.ballBox.Image = testBall.scene;
+                    output2.pictureBox2.Image = greenbmap2;
+                }
+
             }
             catch (Exception ex)
             {
@@ -232,13 +320,17 @@ namespace SYDE461_UI
 
             //output.ballBox.Image = ballBack;
 
-            output.ballBox.Image = testBall.scene;
+            
+            //for debug
+            //output2.ballBox.Image = testBall.scene;
+            //output2.pictureBox2.Image = greenbmap2;
+
             //for testing
             //output.ballBox.Image = bmap2;
             //output.ballBox.Image = colorbmap;
             //output.pictureBox2.Image = redbmap;
             //output.pictureBox2.Image = yellowbmap;
-            output.pictureBox2.Image = greenbmap2;
+            
             //output.pictureBox2.Image = colorbmap;
         }
 
@@ -445,9 +537,22 @@ namespace SYDE461_UI
             //testBall.resetBall();
         }
 
+
         public void end()
         {
             nui.Uninitialize();
+
+            if (output.inprog.checkComplete() == true)
+            {
+                //popup.show("Good work! You completed the exercise.");
+                MessageBox.Show("Good work!");
+            }
+            else
+            {
+                popup.show("Good work!");
+                MessageBox.Show("Good work!");
+            }
+            // add more stuff here
         }
     }
 }

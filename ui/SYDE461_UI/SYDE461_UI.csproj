@@ -49,12 +49,16 @@
     </Reference>
     <Reference Include="Microsoft.Research.Kinect, Version=1.0.0.45, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Npgsql">
+      <HintPath>..\..\..\Npgsql2.0.11.93-bin-ms.net4.0\Npgsql2.0.11.93-bin-ms.net4.0\Npgsql.dll</HintPath>
+    </Reference>
     <Reference Include="OpenTK, Version=1.0.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL" />
     <Reference Include="OpenTK.GLControl, Version=1.0.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -68,7 +72,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Ball.cs" />
+    <Compile Include="BigMessageBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BigMessageBox.Designer.cs">
+      <DependentUpon>BigMessageBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExerciseScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExerciseScreen.designer.cs">
+      <DependentUpon>ExerciseScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="ExerciseSession.cs" />
+    <Compile Include="Debug.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Debug.Designer.cs">
+      <DependentUpon>Debug.cs</DependentUpon>
+    </Compile>
     <Compile Include="PinchExercise.cs" />
     <Compile Include="ExerciseStore.cs" />
     <Compile Include="InstructionVideo.cs">
@@ -85,12 +107,6 @@
     </Compile>
     <Compile Include="UserHistoryScreen.Designer.cs">
       <DependentUpon>UserHistoryScreen.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ExerciseScreen.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ExerciseScreen.Designer.cs">
-      <DependentUpon>ExerciseScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="ShutdownScreen.cs">
       <SubType>Form</SubType>
@@ -119,6 +135,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="BigMessageBox.resx">
+      <DependentUpon>BigMessageBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CreateNewUser.resx">
       <DependentUpon>CreateNewUser.cs</DependentUpon>
     </EmbeddedResource>
@@ -179,6 +198,9 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

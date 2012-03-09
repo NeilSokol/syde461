@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace SYDE461_UI
 {
-    class ExerciseSession
+    public class ExerciseSession
     {
         //Might make sense to move these enums to different loc
         public enum exerciseType { pinch, squeeze, pickup };
@@ -40,7 +40,13 @@ namespace SYDE461_UI
         //Default Constructor
         public ExerciseSession()
         {
-
+            this.type = exerciseType.pinch;
+            this.state = exerciseState.incomplete;
+            this.addedDate = DateTime.Now;
+            this.attempts = 0;
+            //default number of reps if not indicated
+            this.reps = 5;
+            this.completedReps = 0;
         }
         
         public ExerciseSession(UserInfo user, exerciseType type)
@@ -127,17 +133,31 @@ namespace SYDE461_UI
         }
 
         //To update rep count after a rep is completed
-        void updateRepCount()
+        public void updateRepCount()
         {
             this.completedReps = this.completedReps + 1;
         }
 
-        // check if user has completed exercise
-        bool checkComplete()
+        public int getRepCount()
         {
-            if (this.reps == this.completedReps) ;
+            return this.completedReps;
+        }
 
-            return true;
+        public int getRepsRequired()
+        {
+            return this.reps;
+        }
+
+        // check if user has completed exercise
+        public bool checkComplete()
+        {
+            if (this.reps == this.completedReps)
+            {
+                return true;
+            }
+            
+            return false;
+            
         }
 
         // Open a write stream

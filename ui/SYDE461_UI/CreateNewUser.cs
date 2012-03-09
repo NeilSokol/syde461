@@ -13,10 +13,9 @@ namespace SYDE461_UI
     public partial class CreateNewUser : Form
     {
 
-        String username = "test";
-        String password = "password";
         UserInfo newUser= new UserInfo();
         LoginScreen caller;
+        BigMessageBox error = new BigMessageBox();
 
         public CreateNewUser(LoginScreen logscreen)
         {          
@@ -29,7 +28,7 @@ namespace SYDE461_UI
 
             if (caller.storedusers.ContainsKey(textBox1.Text))
             {
-                MessageBox.Show("Error! User already exists!");
+                error.show("Error! User already exists!");
             }
             else
             {

@@ -25,21 +25,31 @@ namespace SYDE461_UI
 {
     public partial class ExerciseScreen : Form
     {
-        String user;
-        PinchExercise exercise;
-        
-        
+        public String user;
+        public PinchExercise exercise;
+        public ExerciseSession inprog;
+
+
         public ExerciseScreen(String username)
         {
             user = username;
+            inprog = new ExerciseSession();
+            InitializeComponent();
+        }
+        
+        
+        public ExerciseScreen(String username, ExerciseSession current)
+        {
+            user = username;
+            inprog = current;
             InitializeComponent();
         }
 
-        private void ExerciseScreen_Load(object sender, EventArgs e)
+        public void ExerciseScreen_Load(object sender, EventArgs e)
         {
 
             InstructionVideo vid = new InstructionVideo("Pinch.wmv");
-            //vid.ShowDialog();
+            vid.ShowDialog();
             //this.label2.Text = vid.vidLocation;
 
             exercise = new PinchExercise(this);
@@ -48,14 +58,13 @@ namespace SYDE461_UI
             //add analysis stuff
         }
 
-        
-
-        private void ExerciseScreen_FormClosing(object sender, FormClosingEventArgs e)
+        public void ExerciseScreen_FormClosing(object sender, FormClosingEventArgs e)
         {
             exercise.end();
         }
 
-        private void comboBoxHealth_SelectedIndexChanged(object sender, EventArgs e)
+
+        public void comboBoxHealth_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch(comboBoxHealth.SelectedItem.ToString())
             {
@@ -74,5 +83,11 @@ namespace SYDE461_UI
             };
         }
 
+        private void exit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
     }
+   
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using System.Media;
 
 namespace SYDE461_UI
 {
@@ -20,14 +21,13 @@ namespace SYDE461_UI
             Application.SetCompatibleTextRenderingDefault(false);
             
             //create login screen and show
-            //LoginScreen logscreen = new LoginScreen();
-           // Application.Run(logscreen);
+            LoginScreen logscreen = new LoginScreen();
 
-            ExerciseScreen logscreen = new ExerciseScreen("pinch");
-            PinchExercise pinch = new PinchExercise(logscreen); 
+            //Debug logscreen = new Debug("pinch");
+            //PinchExercise pinch = new PinchExercise(logscreen); 
             
             //InstructionVideo logscreen = new InstructionVideo();
-            
+
             Application.Run(logscreen);
 
         }

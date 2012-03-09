@@ -21,7 +21,7 @@ using OpenTK.Graphics.OpenGL;
 namespace SYDE461_UI
 {
     // This class is for collecting exercise information
-    class ExerciseData
+    public class ExerciseData
     {
         public String exerciseName;
         public String exerciseDescription;
