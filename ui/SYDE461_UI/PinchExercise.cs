@@ -33,6 +33,7 @@ namespace SYDE461_UI
         Bitmap yellowbmap;
         Bitmap greenbmap;
         Bitmap greenbmap2;
+        Bitmap bluebmap;
 
         //colour blobs
         Blob[] blobs;
@@ -65,6 +66,7 @@ namespace SYDE461_UI
         AForge.Imaging.Filters.ColorFiltering yellowfilter = new AForge.Imaging.Filters.ColorFiltering();
         AForge.Imaging.Filters.ColorFiltering greenfilter = new AForge.Imaging.Filters.ColorFiltering();
         AForge.Imaging.Filters.ColorFiltering redfilter = new AForge.Imaging.Filters.ColorFiltering();
+        AForge.Imaging.Filters.ColorFiltering bluefilter = new AForge.Imaging.Filters.ColorFiltering();
         AForge.Imaging.Filters.Threshold thresholdfilter = new AForge.Imaging.Filters.Threshold(5);
         AForge.Imaging.Filters.Dilatation morphDilate = new AForge.Imaging.Filters.Dilatation();
         AForge.Imaging.Filters.Mean meanfilter = new AForge.Imaging.Filters.Mean();
@@ -219,6 +221,7 @@ namespace SYDE461_UI
             greenbmap = greenfilter.Apply(colorbmap);
             greenbmap.Tag = "Green";
             greenbmap2 = (Bitmap)greenbmap.Clone();
+            bluebmap = bluefilter.Apply(colorbmap);
             colorbmap = extractFilter.Apply(colorbmap);
             //bmap = connectedfilter.Apply(colorbmap);
             // check objects count
@@ -299,6 +302,7 @@ namespace SYDE461_UI
                     output.ballBox.Image = testBall.scene;
                     output.pictureBox1.Image = redbmap2;
                     output.pictureBox2.Image = greenbmap2;
+                    output.pictureBox3.Image = bluebmap;
                     changedir(output.label2);
                     
 
@@ -535,6 +539,10 @@ namespace SYDE461_UI
             greenfilter.Red = new IntRange(0, 50);
             greenfilter.Green = new IntRange(50, 255);
             greenfilter.Blue = new IntRange(0, 70);
+            bluefilter.Red = new IntRange(0, 70);
+            bluefilter.Green = new IntRange(0, 70);
+            bluefilter.Blue = new IntRange(185, 255);
+
             //testBall.resetBall();
         }
 
