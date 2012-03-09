@@ -36,9 +36,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(95, 73);
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(86, 95);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(95, 32);
+            this.button1.Size = new System.Drawing.Size(291, 85);
             this.button1.TabIndex = 0;
             this.button1.Text = "Start Exercise";
             this.button1.UseVisualStyleBackColor = true;
@@ -46,9 +47,10 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(83, 133);
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(86, 198);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(123, 30);
+            this.button2.Size = new System.Drawing.Size(291, 83);
             this.button2.TabIndex = 1;
             this.button2.Text = "View Activity History";
             this.button2.UseVisualStyleBackColor = true;
@@ -57,16 +59,18 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(31, 29);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(39, 40);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 13);
+            this.label1.Size = new System.Drawing.Size(0, 33);
             this.label1.TabIndex = 2;
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(99, 191);
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Location = new System.Drawing.Point(86, 309);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(84, 29);
+            this.button3.Size = new System.Drawing.Size(291, 82);
             this.button3.TabIndex = 3;
             this.button3.Text = "Log Out";
             this.button3.UseVisualStyleBackColor = true;
@@ -76,7 +80,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(292, 266);
+            this.ClientSize = new System.Drawing.Size(453, 424);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button2);

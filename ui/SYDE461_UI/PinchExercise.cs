@@ -133,7 +133,7 @@ namespace SYDE461_UI
                 together.Play();
                 output.inprog.updateRepCount();
                 output.label5.Text = (output.inprog.getRepCount()).ToString();
-                output.label6.Text = (output.inprog.getRepsRequired()).ToString();
+                output.label7.Text = (output.inprog.getRepsRequired() - output.inprog.getRepCount()).ToString();
                 direction = 0;
                 if (output.inprog.checkComplete() == true)
                 { 
@@ -545,13 +545,15 @@ namespace SYDE461_UI
 
             if (output.inprog.checkComplete() == true)
             {
-                popup.show("Good work! You completed the exercise.");
-                //MessageBox.Show("Good work!");
+                //popup.show("Good work! You completed the exercise.");
+                MessageBox.Show("Good work! You completed the exercise.");
+                complete.PlaySync();
             }
             else
             {
                 //popup.show("Good work!");
                 MessageBox.Show("Good work!");
+                practice.PlaySync();
             }
             // add more stuff here
         }
