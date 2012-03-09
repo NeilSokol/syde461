@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Windows.Forms;
+using System.Data;
+using Npgsql;
 
 namespace SYDE461_UI
 {
@@ -16,6 +18,8 @@ namespace SYDE461_UI
         //create holders for user input
         String username = "";
         String password = "";
+        private DataSet ds = new DataSet();
+        private DataTable dt = new DataTable();
 
         //User Dictionary Storage
         public Dictionary<String, String> storedusers = new Dictionary<string,string>();
@@ -35,10 +39,36 @@ namespace SYDE461_UI
         //We should really rename these buttons into something more descriptive
         private void loginButton_Click(object sender, EventArgs e)
         {
+            NpgsqlConnection conn = new NpgsqlConnection("Server=127.0.0.1;Port=5432;User Id=useitlab;Password=abc123;Database=UserData;");
+            conn.Open();
 
             //create a UserInfo instance with the user input
             UserInfo loginInfo = new UserInfo(textBox1.Text, textBox2.Text);
 
+            string sql = "select * from userinfo where username='" + textBox1.Text + "'";
+            NpgsqlDataAdapter da = new NpgsqlDataAdapter(sql, conn);
+            ds.Reset();
+            da.Fill(ds);
+            dt = ds.Tables[0];
+
+            if (dt.Rows.Count != 0)
+            {
+                if (dt.Rows[0][2].ToString() == loginInfo.getPassword())
+                {
+                    WelcomeScreen MainMenu = new WelcomeScreen(loginInfo);
+                    MainMenu.ShowDialog();
+                    conn.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Error! Password is incorrect!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("User does not exist");
+            }
+            /***
             //Insert check for username and password
             //Need to check user input to all existing UserInfo instances
 
@@ -66,7 +96,11 @@ namespace SYDE461_UI
                 // Should provide useful information to user
                 MessageBox.Show("Error! Invalid Username.");
                // LoginFail failed = new LoginFail();
-            }
+            } ***/
+
+
+            conn.Close();
+
         }
 
         //

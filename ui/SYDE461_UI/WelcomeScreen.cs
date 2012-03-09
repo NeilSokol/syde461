@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-
+using Npgsql;
 namespace SYDE461_UI
 {
     // This class is for displaying the main menu to the user
@@ -15,7 +15,8 @@ namespace SYDE461_UI
         //Screen must have access to user info
         UserInfo user = new UserInfo();
         String username;
-
+        DataSet ds;
+        DataTable dt;
         //initialization of screen
         //passes in user info from login screen
         public WelcomeScreen(UserInfo loginInfo)
@@ -30,6 +31,19 @@ namespace SYDE461_UI
         // When user selects exercise screen
         private void button1_Click(object sender, EventArgs e)
         {
+            /*
+            //check if user has any exercises for today
+            NpgsqlConnection conn = new NpgsqlConnection("Server=127.0.0.1;Port=5432;User Id=useitlab;Password=abc123;Database=UserData;");
+            conn.Open();
+
+            DateTime today = DateTime.Today;
+
+            string sql = "select * from exercisedata where date='" +  + "'";
+            NpgsqlDataAdapter da = new NpgsqlDataAdapter(sql, conn);
+            ds.Reset();
+            da.Fill(ds);
+            dt = ds.Tables[0];
+            */
 
             //Explain exercise to the user
 
