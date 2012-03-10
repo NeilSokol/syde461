@@ -39,9 +39,9 @@
             // loginButton
             // 
             this.loginButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.loginButton.Location = new System.Drawing.Point(171, 224);
+            this.loginButton.Location = new System.Drawing.Point(128, 226);
             this.loginButton.Name = "loginButton";
-            this.loginButton.Size = new System.Drawing.Size(100, 50);
+            this.loginButton.Size = new System.Drawing.Size(235, 78);
             this.loginButton.TabIndex = 0;
             this.loginButton.Text = "Login";
             this.loginButton.UseVisualStyleBackColor = true;
@@ -50,9 +50,9 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(152, 301);
+            this.button2.Location = new System.Drawing.Point(128, 329);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(138, 46);
+            this.button2.Size = new System.Drawing.Size(235, 92);
             this.button2.TabIndex = 1;
             this.button2.Text = "Create new user";
             this.button2.UseVisualStyleBackColor = true;
@@ -61,27 +61,25 @@
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(155, 73);
+            this.textBox1.Location = new System.Drawing.Point(128, 73);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(125, 31);
+            this.textBox1.Size = new System.Drawing.Size(235, 31);
             this.textBox1.TabIndex = 2;
-            this.textBox1.Text = "start";
             // 
             // textBox2
             // 
             this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(156, 162);
+            this.textBox2.Location = new System.Drawing.Point(128, 174);
             this.textBox2.Name = "textBox2";
             this.textBox2.PasswordChar = '*';
-            this.textBox2.Size = new System.Drawing.Size(124, 31);
+            this.textBox2.Size = new System.Drawing.Size(235, 31);
             this.textBox2.TabIndex = 3;
-            this.textBox2.Text = "start";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(146, 25);
+            this.label1.Location = new System.Drawing.Point(122, 25);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(158, 33);
             this.label1.TabIndex = 4;
@@ -91,7 +89,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(152, 120);
+            this.label2.Location = new System.Drawing.Point(122, 125);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(143, 33);
             this.label2.TabIndex = 5;
@@ -101,7 +99,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(449, 397);
+            this.ClientSize = new System.Drawing.Size(490, 453);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox2);

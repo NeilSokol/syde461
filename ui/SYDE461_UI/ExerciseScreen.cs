@@ -28,6 +28,7 @@ namespace SYDE461_UI
         public String user;
         public PinchExercise exercise;
         public ExerciseSession inprog;
+        public BigMessageBox popup = new BigMessageBox();
 
 
         public ExerciseScreen(String username)
@@ -35,6 +36,8 @@ namespace SYDE461_UI
             user = username;
             inprog = new ExerciseSession();
             InitializeComponent();
+            label5.Text = inprog.getRepCount().ToString();
+            label7.Text = inprog.getRepsRequired().ToString();
         }
         
         

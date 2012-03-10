@@ -43,15 +43,17 @@
             this.exit = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.ballBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // fingerDistanceValue
             // 
             this.fingerDistanceValue.AutoSize = true;
-            this.fingerDistanceValue.Location = new System.Drawing.Point(526, 337);
+            this.fingerDistanceValue.Location = new System.Drawing.Point(70, 646);
             this.fingerDistanceValue.Name = "fingerDistanceValue";
             this.fingerDistanceValue.Size = new System.Drawing.Size(0, 13);
             this.fingerDistanceValue.TabIndex = 5;
@@ -59,7 +61,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(525, 312);
+            this.label1.Location = new System.Drawing.Point(69, 621);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(81, 13);
             this.label1.TabIndex = 4;
@@ -85,7 +87,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(759, 312);
+            this.label3.Location = new System.Drawing.Point(303, 621);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(130, 13);
             this.label3.TabIndex = 11;
@@ -94,7 +96,7 @@
             // correctedDistanceValue
             // 
             this.correctedDistanceValue.AutoSize = true;
-            this.correctedDistanceValue.Location = new System.Drawing.Point(759, 338);
+            this.correctedDistanceValue.Location = new System.Drawing.Point(303, 647);
             this.correctedDistanceValue.Name = "correctedDistanceValue";
             this.correctedDistanceValue.Size = new System.Drawing.Size(0, 13);
             this.correctedDistanceValue.TabIndex = 12;
@@ -102,7 +104,7 @@
             // labelStroke
             // 
             this.labelStroke.AutoSize = true;
-            this.labelStroke.Location = new System.Drawing.Point(949, 312);
+            this.labelStroke.Location = new System.Drawing.Point(493, 621);
             this.labelStroke.Name = "labelStroke";
             this.labelStroke.Size = new System.Drawing.Size(79, 13);
             this.labelStroke.TabIndex = 14;
@@ -116,7 +118,7 @@
             "6 Month Recovery",
             "1 Month Recovery",
             "Severe Stroke"});
-            this.comboBoxHealth.Location = new System.Drawing.Point(949, 336);
+            this.comboBoxHealth.Location = new System.Drawing.Point(493, 645);
             this.comboBoxHealth.Name = "comboBoxHealth";
             this.comboBoxHealth.Size = new System.Drawing.Size(121, 21);
             this.comboBoxHealth.TabIndex = 13;
@@ -186,13 +188,22 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(31, 33);
             this.label7.TabIndex = 21;
-            this.label7.Text = "0";
+            this.label7.Text = "5";
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Location = new System.Drawing.Point(532, 318);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(352, 236);
+            this.pictureBox3.TabIndex = 22;
+            this.pictureBox3.TabStop = false;
             // 
             // ExerciseScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(485, 527);
+            this.ClientSize = new System.Drawing.Size(1276, 699);
+            this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.exit);
@@ -215,6 +226,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ballBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -239,5 +251,6 @@
         private System.Windows.Forms.Button exit;
         public System.Windows.Forms.Label label6;
         public System.Windows.Forms.Label label7;
+        public System.Windows.Forms.PictureBox pictureBox3;
     }
 }
