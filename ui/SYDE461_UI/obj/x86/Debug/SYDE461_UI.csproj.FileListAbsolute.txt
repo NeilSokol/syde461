@@ -185,3 +185,4 @@ C:\Users\UseIt\Desktop\Ang_Lindsey_Sokol\syde461\ui\SYDE461_UI\bin\Debug\fr\Npgs
 C:\Users\UseIt\Desktop\Ang_Lindsey_Sokol\syde461\ui\SYDE461_UI\bin\Debug\ja\Npgsql.resources.dll
 C:\Users\UseIt\Desktop\Ang_Lindsey_Sokol\syde461\ui\SYDE461_UI\bin\Debug\zh-CN\Npgsql.resources.dll
 C:\Users\UseIt\Desktop\Ang_Lindsey_Sokol\syde461\ui\SYDE461_UI\obj\x86\Debug\SYDE461_UI.BigMessageBox.resources
+C:\Users\Admin\syde461\ui\SYDE461_UI\obj\x86\Debug\SYDE461_UI.BigMessageBox.resources
