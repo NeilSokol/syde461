@@ -1,0 +1,37 @@
+c:\users\useit\documents\visual studio 2010\Projects\Test\Test\obj\x86\Debug\ResolveAssemblyReference.cache
+c:\users\useit\documents\visual studio 2010\Projects\Test\Test\obj\x86\Debug\CreateNewUser.baml
+c:\users\useit\documents\visual studio 2010\Projects\Test\Test\obj\x86\Debug\MainWindow.baml
+c:\users\useit\documents\visual studio 2010\Projects\Test\Test\obj\x86\Debug\CreateNewUser.g.cs
+c:\users\useit\documents\visual studio 2010\Projects\Test\Test\obj\x86\Debug\MainWindow.g.cs
+c:\users\useit\documents\visual studio 2010\Projects\Test\Test\obj\x86\Debug\App.g.cs
+c:\users\useit\documents\visual studio 2010\Projects\Test\Test\obj\x86\Debug\syde462WPF_MarkupCompile.cache
+c:\users\useit\documents\visual studio 2010\Projects\Test\Test\obj\x86\Debug\syde462WPF.g.resources
+c:\users\useit\documents\visual studio 2010\Projects\Test\Test\obj\x86\Debug\syde462WPF.Properties.Resources.resources
+c:\users\useit\documents\visual studio 2010\Projects\Test\Test\obj\x86\Debug\GenerateResource.read.1.tlog
+c:\users\useit\documents\visual studio 2010\Projects\Test\Test\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\UseIt\Desktop\Ang_Lindsey_Sokol\syde461\syde462WPF\syde462WPF\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\UseIt\Desktop\Ang_Lindsey_Sokol\syde461\syde462WPF\syde462WPF\obj\x86\Debug\CreateNewUser.baml
+C:\Users\UseIt\Desktop\Ang_Lindsey_Sokol\syde461\syde462WPF\syde462WPF\obj\x86\Debug\MainWindow.baml
+C:\Users\UseIt\Desktop\Ang_Lindsey_Sokol\syde461\syde462WPF\syde462WPF\obj\x86\Debug\CreateNewUser.g.cs
+C:\Users\UseIt\Desktop\Ang_Lindsey_Sokol\syde461\syde462WPF\syde462WPF\obj\x86\Debug\MainWindow.g.cs
+C:\Users\UseIt\Desktop\Ang_Lindsey_Sokol\syde461\syde462WPF\syde462WPF\obj\x86\Debug\App.g.cs
+C:\Users\UseIt\Desktop\Ang_Lindsey_Sokol\syde461\syde462WPF\syde462WPF\obj\x86\Debug\syde462WPF_MarkupCompile.cache
+C:\Users\UseIt\Desktop\Ang_Lindsey_Sokol\syde461\syde462WPF\syde462WPF\obj\x86\Debug\syde462WPF.g.resources
+C:\Users\UseIt\Desktop\Ang_Lindsey_Sokol\syde461\syde462WPF\syde462WPF\obj\x86\Debug\syde462WPF.Properties.Resources.resources
+C:\Users\UseIt\Desktop\Ang_Lindsey_Sokol\syde461\syde462WPF\syde462WPF\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\UseIt\Desktop\Ang_Lindsey_Sokol\syde461\syde462WPF\syde462WPF\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\UseIt\Desktop\Ang_Lindsey_Sokol\syde461\syde462WPF\syde462WPF\bin\Debug\syde462WPF.exe
+C:\Users\UseIt\Desktop\Ang_Lindsey_Sokol\syde461\syde462WPF\syde462WPF\bin\Debug\syde462WPF.pdb
+C:\Users\UseIt\Desktop\Ang_Lindsey_Sokol\syde461\syde462WPF\syde462WPF\bin\Debug\AForge.Imaging.dll
+C:\Users\UseIt\Desktop\Ang_Lindsey_Sokol\syde461\syde462WPF\syde462WPF\bin\Debug\AForge.Vision.dll
+C:\Users\UseIt\Desktop\Ang_Lindsey_Sokol\syde461\syde462WPF\syde462WPF\bin\Debug\OpenTK.dll
+C:\Users\UseIt\Desktop\Ang_Lindsey_Sokol\syde461\syde462WPF\syde462WPF\bin\Debug\AForge.dll
+C:\Users\UseIt\Desktop\Ang_Lindsey_Sokol\syde461\syde462WPF\syde462WPF\bin\Debug\AForge.Math.dll
+C:\Users\UseIt\Desktop\Ang_Lindsey_Sokol\syde461\syde462WPF\syde462WPF\bin\Debug\AForge.Imaging.pdb
+C:\Users\UseIt\Desktop\Ang_Lindsey_Sokol\syde461\syde462WPF\syde462WPF\bin\Debug\AForge.Imaging.xml
+C:\Users\UseIt\Desktop\Ang_Lindsey_Sokol\syde461\syde462WPF\syde462WPF\bin\Debug\AForge.Vision.xml
+C:\Users\UseIt\Desktop\Ang_Lindsey_Sokol\syde461\syde462WPF\syde462WPF\bin\Debug\OpenTK.xml
+C:\Users\UseIt\Desktop\Ang_Lindsey_Sokol\syde461\syde462WPF\syde462WPF\bin\Debug\AForge.xml
+C:\Users\UseIt\Desktop\Ang_Lindsey_Sokol\syde461\syde462WPF\syde462WPF\bin\Debug\AForge.Math.xml
+C:\Users\UseIt\Desktop\Ang_Lindsey_Sokol\syde461\syde462WPF\syde462WPF\obj\x86\Debug\syde462WPF.exe
+C:\Users\UseIt\Desktop\Ang_Lindsey_Sokol\syde461\syde462WPF\syde462WPF\obj\x86\Debug\syde462WPF.pdb

@@ -1,0 +1,15 @@
+c:\users\useit\documents\visual studio 2010\Projects\Test\Test\bin\Debug\Test.exe
+c:\users\useit\documents\visual studio 2010\Projects\Test\Test\bin\Debug\Test.pdb
+c:\users\useit\documents\visual studio 2010\Projects\Test\Test\obj\x86\Debug\ResolveAssemblyReference.cache
+c:\users\useit\documents\visual studio 2010\Projects\Test\Test\obj\x86\Debug\MainWindow.baml
+c:\users\useit\documents\visual studio 2010\Projects\Test\Test\obj\x86\Debug\MainWindow.g.cs
+c:\users\useit\documents\visual studio 2010\Projects\Test\Test\obj\x86\Debug\App.g.cs
+c:\users\useit\documents\visual studio 2010\Projects\Test\Test\obj\x86\Debug\Test_MarkupCompile.cache
+c:\users\useit\documents\visual studio 2010\Projects\Test\Test\obj\x86\Debug\Test.g.resources
+c:\users\useit\documents\visual studio 2010\Projects\Test\Test\obj\x86\Debug\Test.Properties.Resources.resources
+c:\users\useit\documents\visual studio 2010\Projects\Test\Test\obj\x86\Debug\GenerateResource.read.1.tlog
+c:\users\useit\documents\visual studio 2010\Projects\Test\Test\obj\x86\Debug\GenerateResource.write.1.tlog
+c:\users\useit\documents\visual studio 2010\Projects\Test\Test\obj\x86\Debug\Test.exe
+c:\users\useit\documents\visual studio 2010\Projects\Test\Test\obj\x86\Debug\Test.pdb
+c:\users\useit\documents\visual studio 2010\Projects\Test\Test\obj\x86\Debug\CreateNewUser.baml
+c:\users\useit\documents\visual studio 2010\Projects\Test\Test\obj\x86\Debug\CreateNewUser.g.cs
