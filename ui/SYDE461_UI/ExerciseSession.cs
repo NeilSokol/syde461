@@ -143,9 +143,9 @@ namespace SYDE461_UI
             return this.completedReps;
         }
 
-        public int getRepsRequired()
+        public int getRepsLeft()
         {
-            return this.reps;
+            return (reps - completedReps);
         }
 
         // check if user has completed exercise

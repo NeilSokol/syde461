@@ -23,7 +23,7 @@ namespace SYDE461_UI
             //create login screen and show
             LoginScreen logscreen = new LoginScreen();
 
-            //Debug logscreen = new Debug("pinch");
+            //ExerciseScreen logscreen = new ExerciseScreen("pinch");
             //PinchExercise pinch = new PinchExercise(logscreen); 
             
             //InstructionVideo logscreen = new InstructionVideo();

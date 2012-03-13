@@ -63,12 +63,12 @@ namespace SYDE461_UI
                 }
                 else
                 {
-                    MessageBox.Show("Error! Password is incorrect!");
+                    error.show("Error! Password is incorrect!");
                 }
             }
             else
             {
-                MessageBox.Show("User does not exist");
+                error.show("Error! User does not exist!");
             }
             /***
             //Insert check for username and password

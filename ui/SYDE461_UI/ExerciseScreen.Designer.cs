@@ -34,8 +34,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.correctedDistanceValue = new System.Windows.Forms.Label();
-            this.labelStroke = new System.Windows.Forms.Label();
-            this.comboBoxHealth = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.exit = new System.Windows.Forms.Button();
@@ -95,28 +93,6 @@
             this.correctedDistanceValue.Size = new System.Drawing.Size(0, 13);
             this.correctedDistanceValue.TabIndex = 12;
             // 
-            // labelStroke
-            // 
-            this.labelStroke.AutoSize = true;
-            this.labelStroke.Location = new System.Drawing.Point(493, 621);
-            this.labelStroke.Name = "labelStroke";
-            this.labelStroke.Size = new System.Drawing.Size(79, 13);
-            this.labelStroke.TabIndex = 14;
-            this.labelStroke.Text = "Stroke Severity";
-            // 
-            // comboBoxHealth
-            // 
-            this.comboBoxHealth.FormattingEnabled = true;
-            this.comboBoxHealth.Items.AddRange(new object[] {
-            "No Stroke",
-            "6 Month Recovery",
-            "1 Month Recovery",
-            "Severe Stroke"});
-            this.comboBoxHealth.Location = new System.Drawing.Point(493, 645);
-            this.comboBoxHealth.Name = "comboBoxHealth";
-            this.comboBoxHealth.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxHealth.TabIndex = 13;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -172,14 +148,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(633, 683);
+            this.ClientSize = new System.Drawing.Size(484, 547);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.exit);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.labelStroke);
-            this.Controls.Add(this.comboBoxHealth);
             this.Controls.Add(this.correctedDistanceValue);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -206,8 +180,6 @@
         public System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         public System.Windows.Forms.Label correctedDistanceValue;
-        private System.Windows.Forms.Label labelStroke;
-        private System.Windows.Forms.ComboBox comboBoxHealth;
         private System.Windows.Forms.Label label4;
         public System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button exit;

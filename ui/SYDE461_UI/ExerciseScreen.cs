@@ -37,7 +37,7 @@ namespace SYDE461_UI
             inprog = new ExerciseSession();
             InitializeComponent();
             label5.Text = inprog.getRepCount().ToString();
-            label7.Text = inprog.getRepsRequired().ToString();
+            label7.Text = inprog.getRepsLeft().ToString();
         }
         
         
@@ -56,7 +56,7 @@ namespace SYDE461_UI
             //this.label2.Text = vid.vidLocation;
 
             exercise = new PinchExercise(this);
-            this.comboBoxHealth.SelectedItem = "No Stroke";
+            //this.comboBoxHealth.SelectedItem = "No Stroke";
             exercise.start();
             //add analysis stuff
         }
@@ -67,24 +67,24 @@ namespace SYDE461_UI
         }
 
 
-        public void comboBoxHealth_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            switch(comboBoxHealth.SelectedItem.ToString())
-            {
-                case "No Stroke":
-                    exercise.setHealth(0);
-                break;
-                case "6 Month Recovery":
-                    exercise.setHealth(1);
-                break;
-                case "1 Month Recoverye":
-                    exercise.setHealth(2);
-                break;
-                case "Severe Stroke":
-                    exercise.setHealth(3);
-                break;
-            };
-        }
+        //public void comboBoxHealth_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    switch(comboBoxHealth.SelectedItem.ToString())
+        //    {
+        //        case "No Stroke":
+        //            exercise.setHealth(0);
+        //        break;
+        //        case "6 Month Recovery":
+        //            exercise.setHealth(1);
+        //        break;
+        //        case "1 Month Recoverye":
+        //            exercise.setHealth(2);
+        //        break;
+        //        case "Severe Stroke":
+        //            exercise.setHealth(3);
+        //        break;
+        //    };
+        //}
 
         private void exit_Click(object sender, EventArgs e)
         {
