@@ -41,7 +41,7 @@ namespace SYDE461_UI
         //We should really rename these buttons into something more descriptive
         private void loginButton_Click(object sender, EventArgs e)
         {
-            NpgsqlConnection conn = new NpgsqlConnection("Server=127.0.0.1;Port=5432;User Id=useitlab;Password=abc123;Database=UserData;");
+            NpgsqlConnection conn = new NpgsqlConnection("Server=127.0.0.1;Port=5432;User Id=postgres;Password=useitlab;Database=UserData;");
             conn.Open();
 
             //create a UserInfo instance with the user input

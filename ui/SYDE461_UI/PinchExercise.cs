@@ -33,7 +33,7 @@ namespace SYDE461_UI
         Bitmap yellowbmap;
         Bitmap greenbmap;
         Bitmap greenbmap2;
-        Bitmap bluebmap;
+        //Bitmap bluebmap;
 
         //colour blobs
         Blob[] blobs;
@@ -66,7 +66,7 @@ namespace SYDE461_UI
         AForge.Imaging.Filters.ColorFiltering yellowfilter = new AForge.Imaging.Filters.ColorFiltering();
         AForge.Imaging.Filters.ColorFiltering greenfilter = new AForge.Imaging.Filters.ColorFiltering();
         AForge.Imaging.Filters.ColorFiltering redfilter = new AForge.Imaging.Filters.ColorFiltering();
-        AForge.Imaging.Filters.ColorFiltering bluefilter = new AForge.Imaging.Filters.ColorFiltering();
+        //AForge.Imaging.Filters.ColorFiltering bluefilter = new AForge.Imaging.Filters.ColorFiltering();
         AForge.Imaging.Filters.Threshold thresholdfilter = new AForge.Imaging.Filters.Threshold(5);
         AForge.Imaging.Filters.Dilatation morphDilate = new AForge.Imaging.Filters.Dilatation();
         AForge.Imaging.Filters.Mean meanfilter = new AForge.Imaging.Filters.Mean();
@@ -126,13 +126,13 @@ namespace SYDE461_UI
             if (direction == 0 && testBall.balldistance == testBall.min_height)
             {
                 instruction.Text = "Release the ball!";
-                apart.Play();
+                //apart.Play();
                 direction = 1;
             }
             if (direction == 1 && testBall.balldistance == testBall.max_height)
             {
-                goodJob.Play();
-                together.Play();
+                //goodJob.Play();
+                //together.Play();
                 output.inprog.updateRepCount();
                 output.label5.Text = (output.inprog.getRepCount()).ToString();
                 output.label7.Text = (output.inprog.getRepsRequired()).ToString();
@@ -145,7 +145,7 @@ namespace SYDE461_UI
             }
             if (direction == 2 && testBall.balldistance == testBall.max_height)
             {
-                together.Play();
+                //together.Play();
                 //MessageBox.Show(together.SoundLocation);
                 direction = 0;
             }
@@ -213,15 +213,19 @@ namespace SYDE461_UI
             AForge.Imaging.Filters.ApplyMask amask = new AForge.Imaging.Filters.ApplyMask(bmap);
             amask.ApplyInPlace(colorbmap);
 
-            yellowbmap = yellowfilter.Apply(colorbmap);
-            yellowbmap.Tag = "Yellow";
+
+
+           // yellowbmap = yellowfilter.Apply(colorbmap);
+          //  yellowbmap.Tag = "Yellow";
+
+
             redbmap = redfilter.Apply(colorbmap);
             redbmap.Tag = "Red";
-            redbmap2 = (Bitmap)redbmap.Clone();
+            //redbmap2 = (Bitmap)redbmap.Clone();
             greenbmap = greenfilter.Apply(colorbmap);
             greenbmap.Tag = "Green";
-            greenbmap2 = (Bitmap)greenbmap.Clone();
-            bluebmap = bluefilter.Apply(colorbmap);
+            //greenbmap2 = (Bitmap)greenbmap.Clone();
+            //bluebmap = bluefilter.Apply(colorbmap);
             colorbmap = extractFilter.Apply(colorbmap);
             //bmap = connectedfilter.Apply(colorbmap);
             // check objects count
@@ -300,9 +304,9 @@ namespace SYDE461_UI
                     output.fingerDistanceValue.Text = testBall.fingerdistance.ToString();
                     output.correctedDistanceValue.Text = testBall.balldistance.ToString();
                     output.ballBox.Image = testBall.scene;
-                    output.pictureBox1.Image = redbmap2;
-                    output.pictureBox2.Image = greenbmap2;
-                    output.pictureBox3.Image = bluebmap;
+                    //output.pictureBox1.Image = redbmap2;
+                    //output.pictureBox2.Image = greenbmap2;
+                    //output.pictureBox3.Image = bluebmap;
                     changedir(output.label2);
                     
 
@@ -344,8 +348,8 @@ namespace SYDE461_UI
             bmap = gray.Apply(bmap);
             thresholdfilter.ApplyInPlace(bmap);
             morphDilate.ApplyInPlace(bmap);
-            morphDilate.ApplyInPlace(bmap);
-            morphDilate.ApplyInPlace(bmap);
+          //  morphDilate.ApplyInPlace(bmap);
+          //  morphDilate.ApplyInPlace(bmap);
             meanfilter.ApplyInPlace(bmap);
             bmap = blobfilter.Apply(bmap);
             blobCounter.ProcessImage(bmap);
@@ -422,10 +426,10 @@ namespace SYDE461_UI
                     if (blob.Area > maxBlobgreen)
                     {
                         maxBlobgreen = blob.Area;
-                        //this.testBall.yellowx = (double)(blob.Rectangle.X + blob.Rectangle.Width / 2);
-                        //this.testBall.yellowy = (double)(blob.Rectangle.Y + blob.Rectangle.Height / 2);
-                        this.testBall.yellowx = blob.CenterOfGravity.X;
-                        this.testBall.yellowy = blob.CenterOfGravity.Y;
+                        this.testBall.yellowx = (double)(blob.Rectangle.X + blob.Rectangle.Width / 2);
+                        this.testBall.yellowy = (double)(blob.Rectangle.Y + blob.Rectangle.Height / 2);
+                       // this.testBall.yellowx = blob.CenterOfGravity.X;
+                       // this.testBall.yellowy = blob.CenterOfGravity.Y;
                         //greenblobcount++;
                     }
                 }
@@ -440,10 +444,10 @@ namespace SYDE461_UI
                     if (blob.Area > maxBlobred)
                     {
                         maxBlobred = blob.Area;
-                        //this.testBall.redx = (double)(blob.Rectangle.X + blob.Rectangle.Width / 2);
-                        //this.testBall.redy = (double)(blob.Rectangle.Y + blob.Rectangle.Height / 2);
-                        this.testBall.redx = blob.CenterOfGravity.X;
-                        this.testBall.redy = blob.CenterOfGravity.Y;
+                        this.testBall.redx = (double)(blob.Rectangle.X + blob.Rectangle.Width / 2);
+                        this.testBall.redy = (double)(blob.Rectangle.Y + blob.Rectangle.Height / 2);
+                       // this.testBall.redx = blob.CenterOfGravity.X;
+                       // this.testBall.redy = blob.CenterOfGravity.Y;
                         //redblobcount++;
                     }
                 }
@@ -539,9 +543,9 @@ namespace SYDE461_UI
             greenfilter.Red = new IntRange(0, 50);
             greenfilter.Green = new IntRange(50, 255);
             greenfilter.Blue = new IntRange(0, 70);
-            bluefilter.Red = new IntRange(0, 70);
-            bluefilter.Green = new IntRange(0, 70);
-            bluefilter.Blue = new IntRange(185, 255);
+            //bluefilter.Red = new IntRange(0, 70);
+            //bluefilter.Green = new IntRange(0, 70);
+            //bluefilter.Blue = new IntRange(185, 255);
 
             //testBall.resetBall();
         }
@@ -553,14 +557,14 @@ namespace SYDE461_UI
 
             if (output.inprog.checkComplete() == true)
             {
-                complete.Play();
-                output.popup.show("Good work! You completed the exercise.");
+                //complete.Play();
+                output.popup.show("Good work! \n You completed the exercise.");
                 //MessageBox.Show("Good work! You completed the exercise.");
                 
             }
             else
             {
-                practice.Play();
+                //practice.Play();
                 output.popup.show("Good work!");
                 //MessageBox.Show("Good work!");
                 
