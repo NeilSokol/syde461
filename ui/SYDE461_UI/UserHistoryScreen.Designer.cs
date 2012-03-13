@@ -28,14 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.sessionList = new System.Windows.Forms.ListBox();
             this.Close = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            this.exerciseGridView = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.exerciseGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // sessionList
@@ -43,12 +40,6 @@
             this.sessionList.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sessionList.FormattingEnabled = true;
             this.sessionList.ItemHeight = 25;
-            this.sessionList.Items.AddRange(new object[] {
-            "Session 1",
-            "Session 2",
-            "Session 3",
-            "Session 4",
-            "Session 5"});
             this.sessionList.Location = new System.Drawing.Point(35, 41);
             this.sessionList.Name = "sessionList";
             this.sessionList.Size = new System.Drawing.Size(157, 304);
@@ -76,34 +67,26 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "label1";
             // 
-            // chart1
+            // exerciseGridView
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(217, 41);
-            this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(424, 300);
-            this.chart1.TabIndex = 4;
-            this.chart1.Text = "Exercise Session";
+            this.exerciseGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.exerciseGridView.Location = new System.Drawing.Point(324, 60);
+            this.exerciseGridView.Name = "exerciseGridView";
+            this.exerciseGridView.Size = new System.Drawing.Size(317, 222);
+            this.exerciseGridView.TabIndex = 4;
             // 
             // UserHistoryScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(682, 503);
-            this.Controls.Add(this.chart1);
+            this.Controls.Add(this.exerciseGridView);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Close);
             this.Controls.Add(this.sessionList);
             this.Name = "UserHistoryScreen";
             this.Text = "User History";
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.exerciseGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -114,6 +97,6 @@
         private System.Windows.Forms.ListBox sessionList;
         private System.Windows.Forms.Button Close;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.DataGridView exerciseGridView;
     }
 }

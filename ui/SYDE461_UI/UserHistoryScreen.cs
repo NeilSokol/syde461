@@ -26,26 +26,28 @@ namespace SYDE461_UI
         public UserHistoryScreen(UserInfo username)
         {
             user = username;
-            
             //connect to database, attempt to get list of exercises to populate listbox
             conn = new NpgsqlConnection("Server=127.0.0.1;Port=5432;User Id=postgres;Password=useitlab;Database=UserData;");
             conn.Open();
-            string sql = "SELECT * FROM ExerciseInfo WHERE usernum IN (SELECT usernum FROM UserInfo WHERE username ="+username.ToString();
+            string sql = "SELECT * FROM ExerciseInfo WHERE usernum IN (SELECT usernum FROM UserInfo WHERE username ='"+username.getUsername()+"')";
             NpgsqlDataAdapter da = new NpgsqlDataAdapter(sql, conn);
             ds.Reset();
             da.Fill(ds);
             dt = ds.Tables[0];
-            exerciseGridView.DataSource = dt;
+
+            //if no exercise data. exit
             if (dt.Rows.Count == 0)
             {
-
+                MessageBox.Show("No Exercises Found for User!");
+                conn.Close();
+                this.Close();
             }
 
             //SELECT * FROM ExerciseInfo WHERE usernum IN (SELECT usernum FROM UserInfo WHERE username = 'Neil')
 
             //sessionList.ObjectCollection = 
             InitializeComponent();
-
+            exerciseGridView.DataSource = dt;
 
 
         }
@@ -94,7 +96,7 @@ namespace SYDE461_UI
                 // since it C# DataSet can handle multiple tables, we will select first
                 dt = ds.Tables[0];
                 // connect grid to DataTable
-                chart1.DataSource = dt;
+                //chart1.DataSource = dt;
                 // since we only showing the result we don't need connection anymore
                 conn.Close();
             }
