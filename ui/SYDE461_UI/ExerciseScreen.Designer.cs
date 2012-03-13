@@ -34,20 +34,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.correctedDistanceValue = new System.Windows.Forms.Label();
-            this.labelStroke = new System.Windows.Forms.Label();
-            this.comboBoxHealth = new System.Windows.Forms.ComboBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.exit = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.ballBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // fingerDistanceValue
@@ -101,44 +93,6 @@
             this.correctedDistanceValue.Size = new System.Drawing.Size(0, 13);
             this.correctedDistanceValue.TabIndex = 12;
             // 
-            // labelStroke
-            // 
-            this.labelStroke.AutoSize = true;
-            this.labelStroke.Location = new System.Drawing.Point(493, 621);
-            this.labelStroke.Name = "labelStroke";
-            this.labelStroke.Size = new System.Drawing.Size(79, 13);
-            this.labelStroke.TabIndex = 14;
-            this.labelStroke.Text = "Stroke Severity";
-            // 
-            // comboBoxHealth
-            // 
-            this.comboBoxHealth.FormattingEnabled = true;
-            this.comboBoxHealth.Items.AddRange(new object[] {
-            "No Stroke",
-            "6 Month Recovery",
-            "1 Month Recovery",
-            "Severe Stroke"});
-            this.comboBoxHealth.Location = new System.Drawing.Point(493, 645);
-            this.comboBoxHealth.Name = "comboBoxHealth";
-            this.comboBoxHealth.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxHealth.TabIndex = 13;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(528, 55);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(357, 222);
-            this.pictureBox1.TabIndex = 15;
-            this.pictureBox1.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Location = new System.Drawing.Point(919, 55);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(357, 222);
-            this.pictureBox2.TabIndex = 16;
-            this.pictureBox2.TabStop = false;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -190,29 +144,16 @@
             this.label7.TabIndex = 21;
             this.label7.Text = "5";
             // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Location = new System.Drawing.Point(532, 318);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(352, 236);
-            this.pictureBox3.TabIndex = 22;
-            this.pictureBox3.TabStop = false;
-            // 
             // ExerciseScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1276, 699);
-            this.Controls.Add(this.pictureBox3);
+            this.ClientSize = new System.Drawing.Size(484, 547);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.exit);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.labelStroke);
-            this.Controls.Add(this.comboBoxHealth);
             this.Controls.Add(this.correctedDistanceValue);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -224,9 +165,6 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ExerciseScreen_FormClosing);
             this.Load += new System.EventHandler(this.ExerciseScreen_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ballBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -242,15 +180,10 @@
         public System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         public System.Windows.Forms.Label correctedDistanceValue;
-        private System.Windows.Forms.Label labelStroke;
-        private System.Windows.Forms.ComboBox comboBoxHealth;
-        public System.Windows.Forms.PictureBox pictureBox1;
-        public System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label4;
         public System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button exit;
         public System.Windows.Forms.Label label6;
         public System.Windows.Forms.Label label7;
-        public System.Windows.Forms.PictureBox pictureBox3;
     }
 }

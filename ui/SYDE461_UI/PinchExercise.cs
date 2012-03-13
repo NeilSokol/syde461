@@ -129,18 +129,50 @@ namespace SYDE461_UI
                 apart.Play();
                 direction = 1;
             }
+            if (output.inprog.checkComplete() == true)
+            {
+                direction = 3;
+                output.Close();
+            }
             if (direction == 1 && testBall.balldistance == testBall.max_height)
             {
                 goodJob.Play();
-                together.Play();
                 output.inprog.updateRepCount();
                 output.label5.Text = (output.inprog.getRepCount()).ToString();
-                output.label7.Text = (output.inprog.getRepsRequired()).ToString();
+                output.label7.Text = (output.inprog.getRepsLeft()).ToString();
                 direction = 0;
-                if (output.inprog.checkComplete() == true)
-                { 
-                    this.end();
-                }
+                together.Play();
+                instruction.Text = "Squeeze the ball!";
+            }
+            if (direction == 2 && testBall.balldistance == testBall.max_height)
+            {
+                together.Play();
+                //MessageBox.Show(together.SoundLocation);
+                direction = 0;
+            }
+        }
+
+        public void changedirdebug(Label instruction)
+        {
+            if (direction == 0 && testBall.balldistance == testBall.min_height)
+            {
+                instruction.Text = "Release the ball!";
+                apart.Play();
+                direction = 1;
+            }
+            if (output2.inprog.checkComplete() == true)
+            {
+                direction = 3;
+                output2.Close();
+            }
+            if (direction == 1 && testBall.balldistance == testBall.max_height)
+            {
+                goodJob.Play();
+                output2.inprog.updateRepCount();
+                output2.label5.Text = (output2.inprog.getRepCount()).ToString();
+                output2.label7.Text = (output2.inprog.getRepsLeft()).ToString();
+                direction = 0;
+                together.Play();
                 instruction.Text = "Squeeze the ball!";
             }
             if (direction == 2 && testBall.balldistance == testBall.max_height)
@@ -300,21 +332,21 @@ namespace SYDE461_UI
                     output.fingerDistanceValue.Text = testBall.fingerdistance.ToString();
                     output.correctedDistanceValue.Text = testBall.balldistance.ToString();
                     output.ballBox.Image = testBall.scene;
-                    output.pictureBox1.Image = redbmap2;
-                    output.pictureBox2.Image = greenbmap2;
-                    output.pictureBox3.Image = bluebmap;
                     changedir(output.label2);
                     
 
                 }
                 //for debug
-                else
+                if (output2 != null)
                 {
                     output2.pictureBox1.Image = redbmap2;
                     output2.fingerDistanceValue.Text = testBall.fingerdistance.ToString();
                     output2.correctedDistanceValue.Text = testBall.balldistance.ToString();
                     output2.ballBox.Image = testBall.scene;
+                    output2.pictureBox1.Image = redbmap2;
                     output2.pictureBox2.Image = greenbmap2;
+                    output2.pictureBox3.Image = bluebmap;
+                    changedirdebug(output2.label2);
                 }
 
             }
@@ -554,7 +586,7 @@ namespace SYDE461_UI
             if (output.inprog.checkComplete() == true)
             {
                 complete.Play();
-                output.popup.show("Good work! You completed the exercise.");
+                output.popup.show("Good work! \n You completed the exercise.");
                 //MessageBox.Show("Good work! You completed the exercise.");
                 
             }

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
+using Npgsql;
 
 namespace SYDE461_UI
 {
@@ -15,6 +16,9 @@ namespace SYDE461_UI
     {
         UserInfo user;
         String imageloc;
+        BigMessageBox error;
+        private DataSet ds = new DataSet();
+        private DataTable dt = new DataTable();
 
         public UserHistoryScreen(UserInfo username)
         {
@@ -44,11 +48,41 @@ namespace SYDE461_UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                error.show(ex.ToString());
             }
         }
 
-
+        private void llOpenConnAndSelect_LinkClicked(object sender,
+             LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                // PostgeSQL-style connection string
+                NpgsqlConnection conn = new NpgsqlConnection("Server=127.0.0.1;Port=5432;User Id=postgres;Password=useitlab;Database=UserData;");
+                conn.Open();
+                // quite complex sql statement
+                string sql = "SELECT * FROM simple_table";
+                // data adapter making request from our connection
+                NpgsqlDataAdapter da = new NpgsqlDataAdapter(sql, conn);
+                // i always reset DataSet before i do
+                // something with it.... i don't know why :-)
+                ds.Reset();
+                // filling DataSet with result from NpgsqlDataAdapter
+                da.Fill(ds);
+                // since it C# DataSet can handle multiple tables, we will select first
+                dt = ds.Tables[0];
+                // connect grid to DataTable
+                chart1.DataSource = dt;
+                // since we only showing the result we don't need connection anymore
+                conn.Close();
+            }
+            catch (Exception msg)
+            {
+                // something went wrong, and you wanna know why
+                error.show(msg.ToString());
+                throw;
+            }
+        }
 
 
 
