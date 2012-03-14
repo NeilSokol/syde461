@@ -1,0 +1,161 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.1.3
+-- Dumped by pg_dump version 9.1.3
+-- Started on 2012-03-14 12:23:21
+
+SET statement_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- TOC entry 163 (class 3079 OID 11639)
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- TOC entry 1864 (class 0 OID 0)
+-- Dependencies: 163
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 161 (class 1259 OID 16394)
+-- Dependencies: 6
+-- Name: exerciseinfo; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE exerciseinfo (
+    usernum integer NOT NULL,
+    date date,
+    exercisetype character varying(20),
+    completed boolean,
+    amplevel double precision,
+    exercisenum integer NOT NULL,
+    numberreps integer,
+    repscompleted integer,
+    attempt integer[]
+);
+
+
+ALTER TABLE public.exerciseinfo OWNER TO postgres;
+
+--
+-- TOC entry 162 (class 1259 OID 16397)
+-- Dependencies: 6
+-- Name: userinfo; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE userinfo (
+    usernum integer NOT NULL,
+    username character varying(50),
+    password character varying(20) NOT NULL
+);
+
+
+ALTER TABLE public.userinfo OWNER TO postgres;
+
+--
+-- TOC entry 1857 (class 0 OID 16394)
+-- Dependencies: 161
+-- Data for Name: exerciseinfo; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY exerciseinfo (usernum, date, exercisetype, completed, amplevel, exercisenum, numberreps, repscompleted, attempt) FROM stdin;
+1	2012-03-09	pinch	t	1	2	5	5	{2,4,5}
+1	2012-03-08	pinch	t	1	1	5	5	{1,3,2,3,5}
+2	2012-03-02	pinch	t	1	3	5	5	{2,3,1,2,1,5}
+\.
+
+
+--
+-- TOC entry 1858 (class 0 OID 16397)
+-- Dependencies: 162
+-- Data for Name: userinfo; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY userinfo (usernum, username, password) FROM stdin;
+1	Neil	abc123
+2	Bob	bobloblaws
+3	CarlWeathers	stewgoing
+4	ArnoldS	get2dachoppa
+5	JesseV	aliens
+6	Fred	123abc
+7	Joan	Ang
+8		
+\.
+
+
+--
+-- TOC entry 1852 (class 2606 OID 16401)
+-- Dependencies: 161 161
+-- Name: exercisenum; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY exerciseinfo
+    ADD CONSTRAINT exercisenum PRIMARY KEY (exercisenum);
+
+
+--
+-- TOC entry 1855 (class 2606 OID 16403)
+-- Dependencies: 162 162
+-- Name: userinfo_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY userinfo
+    ADD CONSTRAINT userinfo_pkey PRIMARY KEY (usernum);
+
+
+--
+-- TOC entry 1853 (class 1259 OID 16404)
+-- Dependencies: 161
+-- Name: fki_usernum_foreign; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX fki_usernum_foreign ON exerciseinfo USING btree (usernum);
+
+
+--
+-- TOC entry 1856 (class 2606 OID 16405)
+-- Dependencies: 1854 162 161
+-- Name: usernum_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY exerciseinfo
+    ADD CONSTRAINT usernum_foreign FOREIGN KEY (usernum) REFERENCES userinfo(usernum);
+
+
+--
+-- TOC entry 1863 (class 0 OID 0)
+-- Dependencies: 6
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+-- Completed on 2012-03-14 12:23:21
+
+--
+-- PostgreSQL database dump complete
+--
+
