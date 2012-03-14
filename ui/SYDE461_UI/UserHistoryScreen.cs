@@ -15,13 +15,11 @@ namespace SYDE461_UI
     public partial class UserHistoryScreen : Form
     {
         UserInfo user;
-        String imageloc;
+        BigMessageBox error = new BigMessageBox();
 
         private DataSet ds = new DataSet();
         private DataTable dt = new DataTable();
         NpgsqlConnection conn;
-
-        BigMessageBox error;
 
         public UserHistoryScreen(UserInfo username)
         {
@@ -38,18 +36,39 @@ namespace SYDE461_UI
             //if no exercise data. exit
             if (dt.Rows.Count == 0)
             {
-                MessageBox.Show("No Exercises Found for User!");
+                error.show("No exercises found for user!");
                 conn.Close();
                 this.Close();
             }
 
             //SELECT * FROM ExerciseInfo WHERE usernum IN (SELECT usernum FROM UserInfo WHERE username = 'Neil')
 
-            //sessionList.ObjectCollection = 
+            
+
             InitializeComponent();
+            
+            //Replace this with a list of sessions provided from database
+            sessionList.Items.AddRange(new object[] { "this", "is", "a ", "test" });
             exerciseGridView.DataSource = dt;
+            loadChart();
+        }
 
+        public void loadChart()
+        {
+            chart1.DataSource = dt;
 
+           
+            //ds3 = new DataSet();
+            //dt3 = CreateChartData();
+
+            //ds3.Tables.Add(dt3);
+            //chart1.DataSource = ds3.Tables[0].DefaultView;
+            ////chart1.DataSource = dv3;
+
+            chart1.Series["Series1"].XValueMember = dt.Columns["exercisenum"].ToString();
+            chart1.Series["Series1"].YValueMembers = dt.Columns["amplevel"].ToString();
+
+            chart1.DataBind();
         }
 
         private void sessionList_SelectedIndexChanged(object sender, EventArgs e)
@@ -59,10 +78,10 @@ namespace SYDE461_UI
             // Find the string in ListBox2.
             //int index = listBox2.FindString(curItem);
             
-            String referencePath = Directory.GetCurrentDirectory();
-            String relativePath = "...\\...\\" + curItem + ".jpg";
-            imageloc = Path.GetFullPath(Path.Combine(referencePath, relativePath));
-            label1.Text = imageloc;
+            //String referencePath = Directory.GetCurrentDirectory();
+            //String relativePath = "...\\...\\" + curItem + ".jpg";
+            //imageloc = Path.GetFullPath(Path.Combine(referencePath, relativePath));
+            label1.Text = curItem;
 
             try
             {
