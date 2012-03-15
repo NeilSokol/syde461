@@ -15,8 +15,9 @@ namespace SYDE461_UI
         //Screen must have access to user info
         UserInfo user = new UserInfo();
         String username;
-        DataSet ds;
-        DataTable dt;
+        DataSet ds = new DataSet();
+        DataTable dt = new DataTable();
+        int todayExercise = 0;
         //initialization of screen
         //passes in user info from login screen
         public WelcomeScreen(UserInfo loginInfo)
@@ -24,8 +25,29 @@ namespace SYDE461_UI
             user = loginInfo;
             username = loginInfo.getUsername();
             InitializeComponent();
-            this.label1.Text = "Welcome " + username + "!";
-            
+
+            //Check if any exercises need to be done
+             NpgsqlConnection conn = new NpgsqlConnection("Server=127.0.0.1;Port=5432;User Id=postgres;Password=useitlab;Database=UserData;");
+             conn.Open();
+             
+            //get all uncompleted exercises for dates before todays date
+             string today = DateTime.Today.ToShortDateString();
+            string sql = "SELECT exercisenum FROM exerciseinfo WHERE (date < '"+today+"') AND (usernum = (SELECT usernum FROM userinfo WHERE username ='"+loginInfo.getUsername()+"')) AND (completed = false)";
+            NpgsqlDataAdapter da = new NpgsqlDataAdapter(sql, conn);
+            ds.Reset();
+            da.Fill(ds);
+            dt = ds.Tables[0];
+
+            if (dt.Rows.Count == 0)
+            {
+                
+            }
+            else
+            {
+                todayExercise = (int)dt.Rows[0].ItemArray[0];
+            }
+                this.label1.Text = "Welcome " + username + "!";
+                conn.Close();
         }
 
         // When user selects exercise screen
@@ -49,9 +71,15 @@ namespace SYDE461_UI
 
 
             // Create new exercise screen and show to user
-            ExerciseScreen exerciseScreen = new ExerciseScreen(username);
-            exerciseScreen.ShowDialog();
-
+            if (dt.Rows.Count > 0)
+            {
+                ExerciseScreen exerciseScreen = new ExerciseScreen(username, todayExercise);
+                exerciseScreen.ShowDialog();
+            }
+            else 
+            {
+                MessageBox.Show("You have no Exercises for Today");
+            }
             //// Create new debug screen and show to user
             //Debug exerciseScreen = new Debug(username);
             //exerciseScreen.ShowDialog();

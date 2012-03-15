@@ -48,6 +48,18 @@ namespace SYDE461_UI
             this.reps = 5;
             this.completedReps = 0;
         }
+
+        public ExerciseSession(int exercisenum)
+        {
+            this.type = exerciseType.pinch;
+            this.state = exerciseState.incomplete;
+            this.addedDate = DateTime.Now;
+            this.attempts = 0;
+            //default number of reps if not indicated
+            this.reps = 5;
+            this.completedReps = 0;
+            this.sessionID = exercisenum;
+        }
         
         public ExerciseSession(UserInfo user, exerciseType type)
         {
@@ -93,6 +105,9 @@ namespace SYDE461_UI
             this.reps = old.reps;
             this.completedReps = 0;
         }
+
+        //Constructor to handle data pulled from exercise database
+
 
         //Copy ExerciseSession, used by health care professional, probably to repeat an exercise
         public ExerciseSession copyExerciseSession()
@@ -146,6 +161,11 @@ namespace SYDE461_UI
         public int getRepsLeft()
         {
             return (reps - completedReps);
+        }
+
+        public int getExerciseNum()
+        {
+            return this.sessionID;
         }
 
         // check if user has completed exercise

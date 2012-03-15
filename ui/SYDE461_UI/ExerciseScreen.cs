@@ -31,10 +31,10 @@ namespace SYDE461_UI
         public BigMessageBox popup = new BigMessageBox();
 
 
-        public ExerciseScreen(String username)
+        public ExerciseScreen(String username,int exercisenum)
         {
             user = username;
-            inprog = new ExerciseSession();
+            inprog = new ExerciseSession(exercisenum);
             InitializeComponent();
             label5.Text = inprog.getRepCount().ToString();
             label7.Text = inprog.getRepsLeft().ToString();

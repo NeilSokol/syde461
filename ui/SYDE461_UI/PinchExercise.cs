@@ -17,6 +17,7 @@ using AForge.Vision;
 using AForge;
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
+using Npgsql;
 
 namespace SYDE461_UI
 {
@@ -90,6 +91,9 @@ namespace SYDE461_UI
         SoundPlayer apart = new SoundPlayer("apart.wav");
         SoundPlayer practice = new SoundPlayer("practice.wav");
 
+        //data table stuff
+        DataTable dt = new DataTable();
+        DataSet ds = new DataSet();
         
 
         //0 = bring fingers to gether, 1 it push fingers apart, 2 starting
@@ -141,7 +145,6 @@ namespace SYDE461_UI
                 //together.Play();
 
                 goodJob.Play();
-1
                 output.inprog.updateRepCount();
                 output.label5.Text = (output.inprog.getRepCount()).ToString();
                 output.label7.Text = (output.inprog.getRepsLeft()).ToString();
@@ -359,7 +362,7 @@ namespace SYDE461_UI
                     output2.ballBox.Image = testBall.scene;
                     output2.pictureBox1.Image = redbmap2;
                     output2.pictureBox2.Image = greenbmap2;
-                    output2.pictureBox3.Image = bluebmap;
+                    //output2.pictureBox3.Image = bluebmap;
                     changedirdebug(output2.label2);
                 }
 
@@ -597,13 +600,55 @@ namespace SYDE461_UI
         {
             nui.Uninitialize();
 
+
+            NpgsqlConnection conn = new NpgsqlConnection("Server=127.0.0.1;Port=5432;User Id=postgres;Password=useitlab;Database=UserData;");
+            conn.Open();
+
+            NpgsqlCommand command = new NpgsqlCommand("UPDATE exerciseinfo SET repscompleted ="+output.inprog.getRepCount()+ " where exercisenum =" + output.inprog.getExerciseNum(), conn);
+            int rowsadded = command.ExecuteNonQuery();
+
+            command = new NpgsqlCommand("UPDATE exerciseinfo SET attempt =" + output.inprog.getRepCount() + " where exercisenum =" + output.inprog.getExerciseNum(), conn);
+
+
+            //get then update attempts array
+            string sql = "SELECT attempt FROM exerciseinfo WHERE exercisenum =" + output.inprog.getExerciseNum();
+            NpgsqlDataAdapter da = new NpgsqlDataAdapter(sql, conn);
+            ds.Reset();
+            da.Fill(ds);
+            dt = ds.Tables[0];
+
+            //update exercise attempt array
+            int[] attempts = new int[dt.Rows[0].ItemArray.Length + 1]; 
+            dt.Rows[0].ItemArray.CopyTo(dt.Rows[0].ItemArray,0);
+
+            attempts[dt.Rows[0].ItemArray.Length] = output.inprog.getRepCount();
+
+            //build array string to pass into SQL statement
+            string arrstring = "{";
+
+            for (int i = 0; i < attempts.Length; i++)
+            {
+                arrstring += (attempts[i].ToString());
+                arrstring += ",";
+            }
+
+            arrstring += output.inprog.getRepCount().ToString();
+            arrstring += "}";
+
+            command = new NpgsqlCommand("UPDATE exerciseinfo SET attempt = '" + arrstring + "' where exercisenum =" + output.inprog.getExerciseNum().ToString(), conn);
+            rowsadded = command.ExecuteNonQuery();
+
             if (output.inprog.checkComplete() == true)
             {
 
                 //complete.Play();
 
-                complete.Play();
 
+                //If exercise completed, update database accordingly
+                //Could probably replace with internal database function...
+                command = new NpgsqlCommand("UPDATE exerciseinfo SET completed = TRUE where exercisenum =" + output.inprog.getExerciseNum(), conn);
+                rowsadded = command.ExecuteNonQuery();
+                complete.Play();
                 output.popup.show("Good work! \n You completed the exercise.");
                 //MessageBox.Show("Good work! You completed the exercise.");
                 
@@ -615,6 +660,7 @@ namespace SYDE461_UI
                 //MessageBox.Show("Good work!");
                 
             }
+            conn.Close();
             // add more stuff here
         }
 
