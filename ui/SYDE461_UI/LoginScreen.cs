@@ -109,15 +109,67 @@ namespace SYDE461_UI
         private void button2_Click(object sender, EventArgs e)
         {
 
-            CreateNewUser NewUser = new CreateNewUser(this);
-            NewUser.ShowDialog();
-            UserInfo newInfo = NewUser.getuserinput();
-            textBox1.Text = newInfo.getUsername();
-            textBox2.Text = newInfo.getPassword();
-            NewUser.Close();
+            /*  CreateNewUser NewUser = new CreateNewUser(this);
+              NewUser.ShowDialog();
+              UserInfo newInfo = NewUser.getuserinput();
+              textBox1.Text = newInfo.getUsername();
+              textBox2.Text = newInfo.getPassword();
+              NewUser.Close();*/
+            NpgsqlConnection conn = new NpgsqlConnection("Server=127.0.0.1;Port=5432;User Id=postgres;Password=useitlab;Database=UserData;");
+            conn.Open();
 
-            //UserControl1 NewUser2 = new UserControl1();
 
+            //check if user already exists
+            string sql = "select username from userinfo where username='" + textBox1.Text + "'";
+            NpgsqlDataAdapter da = new NpgsqlDataAdapter(sql, conn);
+            ds.Reset();
+            da.Fill(ds);
+            dt = ds.Tables[0];
+
+            //row returned not Null, contains name already
+            if (dt.Rows.Count > 0)
+            {
+                error.show("Error! User already exists!");
+            }
+
+            else
+            {
+                sql = "select * from userinfo";
+                da = new NpgsqlDataAdapter(sql, conn);
+                ds.Reset();
+                da.Fill(ds);
+                dt = ds.Tables[0];
+                int usercount = dt.Rows.Count + 1;
+
+                //execute command to add rows
+                NpgsqlCommand command = new NpgsqlCommand("INSERT into UserInfo VALUES (" + usercount.ToString() + ",'" + textBox1.Text + "','" + textBox2.Text + "')", conn);
+                int rowsadded = command.ExecuteNonQuery();
+
+                /* newUser.setUserInfo(textBox1.Text, textBox2.Text);
+                 caller.fillUsernameAndPass(this, newUser);
+
+                 //find better way then exposing storedusers like this
+                 caller.storedusers.Add(textBox1.Text, textBox2.Text);
+
+                 //add to user file
+                 try
+                 {
+                     //open file. Login screen should have created if not there so append
+                     StreamWriter writestream = new StreamWriter("userlist.txt", true);
+                     writestream.WriteLine(textBox1.Text);
+                     writestream.WriteLine(textBox2.Text);
+                     writestream.Close();
+                 }
+                 catch (Exception ex)
+                 {
+                     MessageBox.Show(ex.ToString());
+                 }
+                 */
+                conn.Close();
+
+                //UserControl1 NewUser2 = new UserControl1();
+
+            }
         }
 
         public void fillUsernameAndPass(CreateNewUser newUser, UserInfo newInfo)
