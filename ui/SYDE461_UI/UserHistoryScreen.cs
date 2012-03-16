@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -48,44 +48,68 @@ namespace SYDE461_UI
             InitializeComponent();
             
             //Replace this with a list of sessions provided from database
-            sessionList.Items.AddRange(new object[] { "this", "is", "a ", "test" });
-            exerciseGridView.DataSource = dt;
+
+            sessionList.Items.Add((object) "Overview");
+
+            for (int i = 1; i <= dt.Rows.Count; i++)
+            {
+                sessionList.Items.Add( (Object) ("Session " + i ));
+            }
             loadChart();
         }
 
         public void loadChart()
         {
-            //chart1.DataSource = dt;
+            // if selected index is bigger than 0 then we are looking at a specific session
+            if (sessionList.SelectedIndex > 0)
+            {
+            
+                DataTable attemptdt = new DataTable();
+                attemptdt.Columns.Add("attempt", typeof(int));
+                attemptdt.Columns.Add("reps", typeof(int));
 
-           
-            //ds3 = new DataSet();
-            //dt3 = CreateChartData();
+                int[] attempts = (int[])dt.Rows[sessionList.SelectedIndex - 1][8];
+                int numattempts = attempts.Length;
 
-            //ds3.Tables.Add(dt3);
-            //chart1.DataSource = ds3.Tables[0].DefaultView;
-            ////chart1.DataSource = dv3;
+                for ( int i = 1; i <= numattempts; i++ )
+                {
+                    attemptdt.Rows.Add( new Object[] { i, attempts[i -1]});
+                }
 
-           // chart1.Series["Series1"].XValueMember = dt.Columns["exercisenum"].ToString();
-          //  chart1.Series["Series1"].YValueMembers = dt.Columns["amplevel"].ToString();
 
-            //chart1.DataBind();
+            historyChart.DataSource = attemptdt;
+            historyChart.Series["attemptInfo"].XValueMember = "attempt";
+            historyChart.Series["attemptInfo"].YValueMembers = "reps";
+            }
+            else
+            {
+                DataTable sessiondt = new DataTable();
+                sessiondt.Columns.Add("session", typeof(int));
+                sessiondt.Columns.Add("number of attempts", typeof(int));
+
+
+                 for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                int [] attempts = (int[]) dt.Rows[sessionList.Items.Count - 2][8];
+                int numattempts = attempts.Length;
+                sessiondt.Rows.Add(new Object[] { i, numattempts});
+                }
+            historyChart.DataSource = sessiondt;
+            historyChart.Series["attemptInfo"].XValueMember = "session";
+            historyChart.Series["attemptInfo"].YValueMembers = "number of attempts";
+            }
+
+            historyChart.DataBind();
         }
 
         private void sessionList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string curItem = sessionList.SelectedItem.ToString();
 
-            // Find the string in ListBox2.
-            //int index = listBox2.FindString(curItem);
-            
-            //String referencePath = Directory.GetCurrentDirectory();
-            //String relativePath = "...\\...\\" + curItem + ".jpg";
-            //imageloc = Path.GetFullPath(Path.Combine(referencePath, relativePath));
-            label1.Text = curItem;
+            label1.Text = sessionList.SelectedItem.ToString();
 
             try
             {
-
+                loadChart();
                 //pictureBox1.Image = System.Drawing.Image.FromFile(imageloc);
                 //sessionList.SelectedItem.
             }
