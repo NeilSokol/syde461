@@ -55,7 +55,7 @@ namespace SYDE461_UI
 
         public void loadChart()
         {
-            chart1.DataSource = dt;
+            //chart1.DataSource = dt;
 
            
             //ds3 = new DataSet();
@@ -65,10 +65,10 @@ namespace SYDE461_UI
             //chart1.DataSource = ds3.Tables[0].DefaultView;
             ////chart1.DataSource = dv3;
 
-            chart1.Series["Series1"].XValueMember = dt.Columns["exercisenum"].ToString();
-            chart1.Series["Series1"].YValueMembers = dt.Columns["amplevel"].ToString();
+           // chart1.Series["Series1"].XValueMember = dt.Columns["exercisenum"].ToString();
+          //  chart1.Series["Series1"].YValueMembers = dt.Columns["amplevel"].ToString();
 
-            chart1.DataBind();
+            //chart1.DataBind();
         }
 
         private void sessionList_SelectedIndexChanged(object sender, EventArgs e)
