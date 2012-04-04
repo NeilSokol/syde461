@@ -1,0 +1,9 @@
+C:\Users\Neil\Documents\Visual Studio 2010\Projects\syde461\doctorInterface\doctorInterface\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Neil\Documents\Visual Studio 2010\Projects\syde461\doctorInterface\doctorInterface\obj\x86\Debug\doctorInterface.mainScreen.resources
+C:\Users\Neil\Documents\Visual Studio 2010\Projects\syde461\doctorInterface\doctorInterface\obj\x86\Debug\doctorInterface.Properties.Resources.resources
+C:\Users\Neil\Documents\Visual Studio 2010\Projects\syde461\doctorInterface\doctorInterface\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\Neil\Documents\Visual Studio 2010\Projects\syde461\doctorInterface\doctorInterface\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\Neil\Documents\Visual Studio 2010\Projects\syde461\doctorInterface\doctorInterface\bin\Debug\doctorInterface.exe
+C:\Users\Neil\Documents\Visual Studio 2010\Projects\syde461\doctorInterface\doctorInterface\bin\Debug\doctorInterface.pdb
+C:\Users\Neil\Documents\Visual Studio 2010\Projects\syde461\doctorInterface\doctorInterface\obj\x86\Debug\doctorInterface.exe
+C:\Users\Neil\Documents\Visual Studio 2010\Projects\syde461\doctorInterface\doctorInterface\obj\x86\Debug\doctorInterface.pdb
